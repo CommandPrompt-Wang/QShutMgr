@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>resources/info.png</file>
+        <file>resources/Programico.ico</file>
+        <file>resources/UAC.png</file>
+    </qresource>
+</RCC>
