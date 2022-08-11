@@ -29,4 +29,4 @@ RESOURCES += \
 
 DISTFILES +=
 
-RC_FILE = icon.rc
+RC_FILE = version.rc

@@ -1,6 +1,15 @@
+/*
+ *  版权所有(C)2022 Command Prompt
+ *本程序为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款，
+ *对本程序再次发布和/或修改；无论您依据的是本授权的第三版，或（您可选的）任一日后发行的版本。
+ *本程序是基于使用目的而加以发布，然而不负任何担保责任；
+ *亦无对适售性或特定目的适用性所为的默示性担保。
+ *详情请参照GNU通用公共授权。
+ */
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <stdlib.h>
+#include <shellapi.h>
 #include "uac.h"
 
 #define FULL_CHECKED    2   //button fully checked [√]
@@ -60,9 +69,9 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
 {
     std::string command;
     if(ChosenShutdownType<3 or ChosenShutdownType>5)    //for -s -r -p
-        command="shutdown ";
+        command="start shutdown.exe ";
     else
-        command="ShutMgr.Ext ";
+        command="start ShutMgr.Ext.exe ";
     char Str_Time_To_Wait[10];
     switch(ChosenShutdownType)
     {
@@ -224,7 +233,10 @@ void MainWindow::on_Logout_clicked()
 
 void MainWindow::on_StopShutdown_clicked()
 {
-    system("shutdown -a");
+    system("ShutMgr.Ext -a || shutdown -a & exit 0");
+//    std::string CurrentPath=QCoreApplication::applicationDirPath().toStdString();
+//    HWND ThisWindow=(HWND)(this->winId());
+//    ShellExecute(ThisWindow,L"open",L"ShutExt.exe",L"-a",(LPCWSTR)(CurrentPath.c_str()),);
 }
 
 void MainWindow::on_Comment_stateChanged(int arg1)
@@ -355,9 +367,14 @@ void MainWindow::on_About_linkActivated(const QString &link)
 {
     QMessageBox::information(this, tr("关于"),
                               tr("关机管理器 ver-1.0.0\n\n"
-                                 "使用 Qt 5.1.0 开发，遵循 LGPL 协议\n\n"
+                                 "使用（开源） Qt 5.1.0 开发\n\n"
+                                 "\t版权所有(C)2022 Command Prompt\n"
+                                 "本程序为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款，\n"
+                                 "对本程序再次发布和/或修改；无论您依据的是本授权的第三版，或（您可选的）任一日后发行的版本。\n"
+                                 "本程序是基于使用目的而加以发布，然而不负任何担保责任；\n"
+                                 "亦无对适售性或特定目的适用性所为的默示性担保。\n"
+                                 "详情请参照GNU通用公共授权。\n"
                                  "MSVC 2015(32-bit)，MSVC 2017(64-bit)编译\n\n"
-                                 "开发者: Command Prompt"
                                  ),
                               QMessageBox::Ok);
 }
