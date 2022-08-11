@@ -1,6 +1,6 @@
 # Shutdown Manager\_关机管理器
 
-Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v2/3)
+Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
 
 ## 用法
 <img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/184076819-ad5e8cdf-5ad8-45d2-b01f-703b17cb6817.png">  
@@ -40,3 +40,13 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v2/3)
         - 将在未来版本中直接调用 api，将 ShutMgr.Ext 与主程序合并  
     4. 缺少多语言支持  
         - 纯懒癌  
+    5. 按下"终止关机"后，若打开的窗口未响应或未关闭，主程序会卡死  
+    	- 已在 v1.0.37.1 中修复  
+### v1.0.37.1
+- 问题修复
+    - ShutMgr.exe  
+        - 修复了“终止关机”按钮无法终止ShutMgr.Ext的问题  
+	- 修复了"终止关机"的按钮逻辑，避免因打开的窗口未响应而主程序卡死的问题  
+	- 更改了_about_ 窗口的内容  
+    - ShutMgr.Ext.exe  
+	- 隐藏了程序窗口  
