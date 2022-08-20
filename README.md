@@ -22,7 +22,7 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
 	 3. 窗口大小未锁定  
      4. 对于"启动后转到固件"，不能自动请求管理员权限  
 - 链接  
-     - https://wwd.lanzouv.com/ibMgs09ch5wb 密码:i0bw  
+     - https://wwd.lanzouv.com/b03p7i6rc	密码:114514
   
 ### v1.0.37
 - 功能  
