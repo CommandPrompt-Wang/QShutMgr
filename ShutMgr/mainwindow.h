@@ -9,12 +9,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
+#include <MyFuncs.h>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QTextCodec>
 
 #include <stdlib.h>
-#include <windows.h>
 #include <powrprof.h>
 
 #define and &&
@@ -78,13 +79,16 @@ private slots:
 
     void on_About_linkActivated(const QString &link);
 
+
+    void on_ChooseMachine_but_clicked();
+
+    void on_SetMachine_stateChanged(int arg1);
+
+    void on_OpenLogWindow_linkActivated(const QString &link);
+
 private:
     Ui::MainWindow *ui;
 };
-inline void replacestr(std::string& str,std::string find,std::string replace)
-{
-    size_t pos=str.find(find);
-    str.erase(pos,find.length());
-    str.insert(pos,replace);
-}
+
+
 #endif // MAINWINDOW_H

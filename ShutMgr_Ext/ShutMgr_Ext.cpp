@@ -9,6 +9,10 @@
 #include <QCoreApplication>
 #include "ShutMgr_Ext.h"
 #include <windows.h>
+
+#include <ShlObj_core.h>
+#pragma comment (lib, "Shell32.lib")
+
 #ifdef  __cplusplus
 extern  "C"  {
 #endif
@@ -24,84 +28,117 @@ extern  "C"  {
 #pragma comment(lib,"powrprof.lib")
 #pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 
-int ChosenShutdownType;
+int ChosenShutdownType=0;
 using namespace std;
-int WaitingTime;
+int WaitingTime=0;
+bool toFirmware=false;
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+//    RunHide("");
     //	cout<<argc;
     if(argc<=1)
     {
-        cout<<"E: 参数少于 1 个 \n";
+        ErrOutput("E: 参数少于 1 个 \n"
+                  "要获取帮助，请键入ShutMgr.Ext -?");
         HelpFunc();
         return -1;
     }
-    if(argc>1)
+
+    //1st argument:这里真的懒得改了，太屎山了
+    if(ArgCmp(argv[1],"-h")
+    or ArgCmp(argv[1],"-hibernate"))
+    ChosenShutdownType=HIBERNATE;
+    else if(ArgCmp(argv[1],"-sleep"))
+    ChosenShutdownType=SLEEP;
+    else if(ArgCmp(argv[1],"-l")
+    or ArgCmp(argv[1],"-logout"))
+    ChosenShutdownType=LOGOUT;
+    else if(ArgCmp(argv[1],"-a"))
     {
-        //1st argument
-        if(ArgCmp(argv[1],"-h")
-        or ArgCmp(argv[1],"-hibernate"))
-        ChosenShutdownType=HIBERNATE;
-        else if(ArgCmp(argv[1],"-sleep"))
-        ChosenShutdownType=SLEEP;
-        else if(ArgCmp(argv[1],"-l")
-        or ArgCmp(argv[1],"-logout"))
-        ChosenShutdownType=LOGOUT;
-        else if(ArgCmp(argv[1],"-a"))
+
+        return RunHide("taskkill -im ShutMgr.Ext.exe -f");;
+    }
+    else if(ArgCmp(argv[1],"-?")
+         or ArgCmp(argv[1],"-h")
+         or ArgCmp(argv[1],"-help"))
+    {
+        HelpFunc();
+        return 0;
+    }
+    else
+    {
+        ErrOutput((std::string)"E: 参数 "+argv[1]+" 错误或其位置(第 1 个)错误 \n"
+                               "要获取帮助，请键入ShutMgr.Ext -?");
+    }
+
+    for(int i=2;i<argc;i++) //重写：从第二个参数扫起
+    {
+        if(ArgCmp(argv[i],"-t")&&
+                argc>(i+1))//保证不越界
         {
-            system("taskkill -im \"ShutMgr.Ext.exe\" -f & exit 0");
-            return 0;
+            WaitingTime=Atoi(argv[i+1]);    //获取-t x中的"x"
+            if(WaitingTime==-1)             //x的格式无效
+            {
+                WaitingTime=0;
+                ErrOutput("E: \"-t\" 之后必须接有效的时间！(0~315360000)");
+            }
         }
-        else if(ArgCmp(argv[1],"-?")
-             or ArgCmp(argv[1],"-h")
-             or ArgCmp(argv[1],"-help"))
+        if(ArgCmp(argv[i],"-fw"))
         {
-            HelpFunc();
-            return 0;
+            if(ChosenShutdownType==HIBERNATE)
+            {
+
+                if(IsUserAnAdmin()==true)
+                    toFirmware=true;
+                else
+                    ErrOutput("E: 当前程序不是以管理员身份运行的，\n"
+                              "请以管理员身份运行并重试。");
+            }
+            else
+            {ErrOutput("\"-fw\" 参数只能搭配 \"-h\"使用！");}
         }
+    }
+    DWORD pid;//占位
+    if(FindProcess("ShutMgr.Ext.exe",pid))
+    {
+        ErrOutput("E: 已经有计划的睡眠/休眠/注销在运行，请先取消之。");
+    }
+    Sleep(WaitingTime*1000);
+    if(ChosenShutdownType==HIBERNATE)
+    {
+        if(toFirmware)
+            return RunHide("shutdown -h -fw");
         else
-        {
-            cout<<"E: 参数 "<<argv[1]<<" 错误或其位置(第 1 个)错误 \n";
-            HelpFunc();
-            return -1;
-        }
-        if(argc>2) //-t xxx
-        {
-            if( ArgCmp(argv[2],"-t") and
-                argc>3 and
-                Atoi(argv[3])!=-1) //-t xxx
-            {
-               WaitingTime=Atoi(argv[3]);
-            }
-            else if(not ArgCmp(argv[2],"-t"))
-            {
-                cout<<"E: 第 2 个参数只能为 -t \n";
-                return -1;
-            }
-            else if(argc==3 or Atoi(argv[3])!=-1)
-            {
-                cout<<"E: -t 之后必须接有效的(0~"<<MAX_TIME<<")时间 \n";
-                return -1;
-            }
-        }
-        Sleep(WaitingTime*1000);
-        if(ChosenShutdownType==HIBERNATE)
-        {
-            system("shutdown -h");
-            return 0;
-        }
-        else if(ChosenShutdownType==SLEEP)
-        {
-            SetSuspendState(false,false,false);
-            return 0;
-        }
-        else if(ChosenShutdownType==LOGOUT)
-        {
-            system("shutdown -l");
-            return 0;
-        }
+            return RunHide("shutdown -h");
+    }
+    else if(ChosenShutdownType==SLEEP)
+    {
+        return SetSuspendState(false,false,false);
+    }
+    else if(ChosenShutdownType==LOGOUT)
+    {
+        return RunHide("shutdown -l");
     }
     return a.exec();
 }
+//if(argc>2) //-t xxx
+//{
+//    if( ArgCmp(argv[2],"-t") and
+//        argc>3 and
+//        Atoi(argv[3])!=-1) //-t xxx
+//    {
+//       WaitingTime=Atoi(argv[3]);
+//    }
+//    else if(not ArgCmp(argv[2],"-t"))
+//    {
+//        ErrOutput("E: 第 2 个参数只能为 -t \n");
+//        return -1;
+//    }
+//    else if(argc==3 or Atoi(argv[3])!=-1)
+//    {
+//        ErrOutput((std::string)"E: -t 之后必须接有效的(0~315360000)秒数 \n");
+//        return -1;
+//    }
+//}

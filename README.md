@@ -1,6 +1,6 @@
 # Shutdown Manager\_关机管理器
 
-Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v2/3)
+Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
 
 ## 用法
 <img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/184076819-ad5e8cdf-5ad8-45d2-b01f-703b17cb6817.png">  
@@ -22,7 +22,7 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v2/3)
 	 3. 窗口大小未锁定  
      4. 对于"启动后转到固件"，不能自动请求管理员权限  
 - 链接  
-     - https://wwd.lanzouv.com/ibMgs09ch5wb 密码:i0bw  
+     - https://wwd.lanzouv.com/b03p7i6rc	密码:114514
   
 ### v1.0.37
 - 功能  
@@ -40,3 +40,32 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v2/3)
         - 将在未来版本中直接调用 api，将 ShutMgr.Ext 与主程序合并  
     4. 缺少多语言支持  
         - 纯懒癌  
+    5. 按下"终止关机"后，若打开的窗口未响应或未关闭，主程序会卡死  
+    	- 已在 v1.0.37.1 中修复  
+### v1.0.37.1
+- 问题修复
+    - ShutMgr.exe  
+        1. 修复了“终止关机”按钮无法终止ShutMgr.Ext的问题  
+        2. 修复了"终止关机"的按钮逻辑，避免因打开的窗口未响应而主程序卡死的问题  
+        3. 更改了_about_ 窗口的内容  
+    - ShutMgr.Ext.exe  
+        - 隐藏了程序窗口   
+  
+### v1.14.514(呕   
+- 新功能   
+    - ShutMgr.exe   
+        1. 支持了指定远程计算机的功能(命令: shutdown ... -m xxx)   
+            - 提示：程序只会检查出基本的名称错误（如带有空格，空的计算机名等等）！   
+        2. 添加了状态栏和日志窗口，日志支持保存   
+        3. 添加了与版本号相关的 彩 蛋    
+- 问题修复   
+    - ShutMgr.exe   
+        1. 修复了按下“执行”按钮会弹一大堆窗口，主程序未响应的问题   
+        2. 添加了未获取到管理员权限的警告   
+        3. 修复了错误的工作目录导致的无法调用Ext的问题   
+        4. 添加了无法访问Ext的警告   
+        5. 添加了未选择任何操作的警告   
+    - ShutMgr.Ext.exe   
+        1. 重写了参数部分代码，对开关的识别更高效   
+        2. 修复了 -fw, -f, 参数不被识别的问题   
+        3. 添加了使用 -fw 参数时，未获取到管理员权限的警告   

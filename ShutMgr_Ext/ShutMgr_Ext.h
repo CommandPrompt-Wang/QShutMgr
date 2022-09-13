@@ -11,6 +11,13 @@
 
 #include <iostream>
 #include <string>
+#include <windows.h>
+#include <tlhelp32.h>
+#include <ShellAPI.h>
+
+#pragma comment(lib, "User32.lib")
+
+//#include <QMessageBox>
 using namespace std;
 #define MAX_TIME 315360000
 #define and &&
@@ -25,7 +32,7 @@ bool ArgCmp(std::string a, std::string b)
     { return false; }
     if(a.length()!=b.length())
     { return false; }
-    for(int it=1;it<a.length();it++)
+    for(unsigned it=1;it<a.length();it++)
     {
         if(tolower(a[it])!=tolower(b[it])) return false;
     }
@@ -63,12 +70,73 @@ int Atoi(const char *str)	//positive number only
         return s;
 }
 
+
+inline void ErrOutput(std::string err)
+{
+//    TCHAR TcharErr[128]={0};
+//    lstrcpy(TcharErr, (LPCWSTR)(err.c_str()));
+//    WinExec(((std::string)"msg %username% "+err).c_str(),SW_SHOW);
+    MessageBoxA(NULL,err.c_str(),"错误",MB_OK);
+    cout<<err<<endl;
+    abort();
+}
+
 void HelpFunc(void)
 {
-    cout<<"用法:\n"
-              "ShutMgr.Ext [-h(ibernate)|-Sleep|-l(ogout)] [-t xxx]\n"
-              "			   [-a]\n"
-              "详细说明参见shutdown.exe -?\n";
+    ErrOutput("用法:\n"
+          "ShutMgr.Ext [-h(ibernate)|-Sleep|-l(ogout)] [-t xxx] [-fw]\n"
+          "[-a]\n"
+          "-h"     "\t使计算机休眠\n"
+          "-Sleep" "\t使计算机睡眠\n"
+          "-l"     "\t使用户登出(注销)\n"
+          "-t x"   "\t设置执行操作前的延时, x取值从0~315360000, \n"
+                   "\t如果不指定该选项, 则默认为无延迟(x=0), 这与shutdown.exe不同\n"
+          "-a"     "\t取消操作\n"
+          "-fw"    "\t启动时首先切换到BIOS/UEFI界面\n"
+          "注意: -fw 选项仅针对 -h, 且需要管理员权限\n"
+          "详细说明参见shutdown.exe -?\n");
 }
+
+//From Website
+bool FindProcess(std::string strProcessName, DWORD& nPid)
+{
+
+    TCHAR tszProcess[64] = { 0 };
+    lstrcpy(tszProcess, (LPCWSTR)(strProcessName.c_str()));
+    //查找进程
+    STARTUPINFO st;
+    PROCESS_INFORMATION pi;
+    PROCESSENTRY32 ps;
+    HANDLE hSnapshot;
+    memset(&st, 0, sizeof(STARTUPINFO));
+    st.cb = sizeof(STARTUPINFO);
+    memset(&ps, 0, sizeof(PROCESSENTRY32));
+    ps.dwSize = sizeof(PROCESSENTRY32);
+    memset(&pi, 0, sizeof(PROCESS_INFORMATION));
+    // 遍历进程
+    hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hSnapshot == INVALID_HANDLE_VALUE)
+        return false;
+    if (!Process32First(hSnapshot, &ps))
+        return false;
+    do {
+        if (lstrcmp(ps.szExeFile, tszProcess) == 0)
+        {
+            //找到指定的程序
+            nPid = ps.th32ProcessID;
+            CloseHandle(hSnapshot);
+//            printf("找到进程: %ls\n", tszProcess);
+            return true;
+            //getchar();
+            //return dwPid;
+        }
+    } while (Process32Next(hSnapshot, &ps));
+    CloseHandle(hSnapshot);
+    return false;
+}
+
+#define RunHide(commandline) WinExec(commandline,SW_HIDE)
+
+
 
 #endif // SHUTMGR_EXT_H

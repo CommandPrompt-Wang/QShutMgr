@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.82.0, 2022-08-11T17:52:17. -->
+<!-- Written by QtCreator 7.84.0, 2022-09-12T17:38:16. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -403,7 +403,6 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/WangKela/Documents/Qt/build-ShutdownManager-Desktop_Qt_5_10_0_MSVC2015_32bit-Release</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

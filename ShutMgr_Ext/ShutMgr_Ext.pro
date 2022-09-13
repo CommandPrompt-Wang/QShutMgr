@@ -17,3 +17,18 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     ShutMgr_Ext.h
+
+VERSION = 1.14.514
+
+#RC_ICONS = app.ico
+
+QMAKE_TARGET_COMPANY =""
+
+QMAKE_TARGET_DESCRIPTION = "关机管理器_扩展"
+
+QMAKE_TARGET_COPYRIGHT = "版权所有(C)2022 Command Prompt"
+
+QMAKE_TARGET_PRODUCT = "关机管理器"
+
+RC_LANG = 0x0800
+

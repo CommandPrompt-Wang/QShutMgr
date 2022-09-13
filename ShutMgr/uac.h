@@ -21,7 +21,7 @@ namespace UAC
     // 以管理员权限启动一个新实例
     // true-启动了新实例
     // false-未启动新实例
-    static bool runAsAdmin()
+    bool runAsAdmin()
     {
         if (IsUserAnAdmin())
         {

@@ -3,5 +3,6 @@
         <file>resources/info.png</file>
         <file>resources/Programico.ico</file>
         <file>resources/UAC.png</file>
+        <file>resources/refresh.png</file>
     </qresource>
 </RCC>

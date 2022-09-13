@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LogWindow</class>
+ <widget class="QWidget" name="LogWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>330</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>330</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>日志</string>
+  </property>
+  <widget class="QTextEdit" name="LogText">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>291</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Close">
+   <property name="geometry">
+    <rect>
+     <x>239</x>
+     <y>168</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>关闭(&amp;C)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Save">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>168</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Refresh">
+   <property name="geometry">
+    <rect>
+     <x>294</x>
+     <y>10</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>刷新</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/new/prefix1/resources/refresh.png</normaloff>:/new/prefix1/resources/refresh.png</iconset>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

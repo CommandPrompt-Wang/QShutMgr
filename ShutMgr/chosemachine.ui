@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChoseMachine</class>
+ <widget class="QWidget" name="ChoseMachine">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>200</width>
+    <height>123</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>200</width>
+    <height>123</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>200</width>
+    <height>123</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>指定计算机</string>
+  </property>
+  <widget class="QListWidget" name="MachineList">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>180</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="MachineEntering">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>85</y>
+     <width>146</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="dragEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="placeholderText">
+    <string>输入计算机名</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AddMachine">
+   <property name="geometry">
+    <rect>
+     <x>158</x>
+     <y>85</y>
+     <width>15</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RemoveMachine">
+   <property name="geometry">
+    <rect>
+     <x>175</x>
+     <y>85</y>
+     <width>15</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
+   </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>119</x>
+     <y>103</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存并关闭(&amp;S)</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
