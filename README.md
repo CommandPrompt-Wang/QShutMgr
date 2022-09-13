@@ -1,6 +1,8 @@
-# Shutdown Manager\_关机管理器
+# 关机管理器
+# Shutdown Manager
 
-Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
+由开源版 Qt 开发(遵守 LGPL v3)
+Powered by open-source Qt (Observes LGPL V3)
 
 ## 用法
 <img width="758" alt="image" src="https://user-images.githubusercontent.com/62493399/189832981-6e6cbc24-f12b-49f7-9a9d-156e14c9c398.png">
@@ -73,5 +75,4 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
     - ShutMgr.exe
         1. 关闭主窗口后，子窗口可能不会同时关闭
 	2. 日志窗口中存在乱码
-	    - 不影响执行结果，只是编码问题
-	    - 实在来不及修了
+	    - 不影响执行结果，只是编码问题(见图)
