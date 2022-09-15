@@ -1,11 +1,9 @@
-# 关机管理器
-# Shutdown Manager
+# Shutdown Manager\_关机管理器
 
-由开源版 Qt 开发(遵守 LGPL v3)
-Powered by open-source Qt (Observes LGPL V3)
+Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
 
 ## 用法
-<img width="758" alt="image" src="https://user-images.githubusercontent.com/62493399/189832981-6e6cbc24-f12b-49f7-9a9d-156e14c9c398.png">
+<img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/184076819-ad5e8cdf-5ad8-45d2-b01f-703b17cb6817.png">  
   
 1. 在上面一栏中选择基本功能<br>
 2. 然后在下一栏中选择高级选项<br>    
@@ -70,9 +68,4 @@ Powered by open-source Qt (Observes LGPL V3)
     - ShutMgr.Ext.exe   
         1. 重写了参数部分代码，对开关的识别更高效   
         2. 修复了 -fw, -f, 参数不被识别的问题   
-        3. 添加了使用 -fw 参数时，未获取到管理员权限的警告  
-- 已知问题
-    - ShutMgr.exe
-        1. 关闭主窗口后，子窗口可能不会同时关闭
-	2. 日志窗口中存在乱码
-	    - 不影响执行结果，只是编码问题(见图)
+        3. 添加了使用 -fw 参数时，未获取到管理员权限的警告   
