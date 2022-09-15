@@ -11,8 +11,8 @@
 
 #include "ui_mainwindow.h"
 #include <MyFuncs.h>
-#include <QMainWindow>
-#include <QMessageBox>
+//#include <QMainWindow> both in MyFuncs.h
+//#include <QMessageBox>
 #include <QTextCodec>
 
 #include <stdlib.h>

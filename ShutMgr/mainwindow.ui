@@ -607,6 +607,9 @@
            <height>60</height>
           </size>
          </property>
+         <property name="placeholderText">
+          <string>输入太多会坏掉的(程序意义上)</string>
+         </property>
         </widget>
        </item>
       </layout>

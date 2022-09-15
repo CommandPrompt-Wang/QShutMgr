@@ -46,6 +46,7 @@ int ReasonNum[2]={0,0};//Major&Minor
 #define OUT_OF_PLAN     1
 #define USER_DEFINED    2
 
+#define MAX_COMMAND_CHAR 114514 //用于StatusStr(sprintf_s的要求)
 
 int Time_To_Wait=30;
 
@@ -109,14 +110,25 @@ std::string Utf8ToGbk(const char* src_str)
 
 void MainWindow::on_Perform_clicked()       //操作执行部分
 {
-    char StatusStr[114]="";
+    char StatusStr[MAX_COMMAND_CHAR]="";
     int MachineCount=0;
     std::string command;
 
     if(ChosenShutdownType<3 or ChosenShutdownType>5)    //for -s -r -p
         command="shutdown.exe ";
     else
-        command="cmd /c ShutMgr.Ext.exe ";
+    {
+        if(MyFuncs::CheckExt())
+            command="cmd /c ShutMgr.Ext.exe ";
+        else
+        {
+            LOG_APPEND("ShutMgr.Ext.exe 不存在或无法访问, 停止执行");
+            QMessageBox::critical(this,tr("错误"),
+                                  tr("ShutMgr.Ext.exe 不存在或无法访问！\n"
+                                     "请检查该程序的位置或访问权限"));
+            return;
+        }
+    }
     char Str_Time_To_Wait[10];
     switch(ChosenShutdownType)
     {
@@ -255,13 +267,13 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
 #ifdef FOR_DEBUG
         system(((std::string)"echo "+command).c_str());
 #else
-    sprintf_s(StatusStr,114,"正在执行 0/%d...",MachineCount);
+    sprintf_s(StatusStr,MAX_COMMAND_CHAR,"正在执行 0/%d...",MachineCount);
     LOG_APPEND(StatusStr);
     if(MoreOption[OTHER_MACHINE])//其他计算机
         for(int i=0;i<MachineCount;i++)
         {
-            sprintf_s(StatusStr,114,
-                      "正在执行 %d/%d..., 命令为\"%s\"",
+            sprintf_s(StatusStr,MAX_COMMAND_CHAR,
+                      "正在执行 %d/%d..., 命令为「%s」",
                       i+1,
                       MachineCount,
                       (command_for_log+" -m "+(MachineNameList[i].toStdString())).c_str());
@@ -272,7 +284,7 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
         }
     else//本机
     {
-        sprintf_s(StatusStr,114,"正在执行..., 命令为\"%s\"",command_for_log.c_str());
+        sprintf_s(StatusStr,MAX_COMMAND_CHAR,"正在执行..., 命令为「%s」",command_for_log.c_str());
         LOG_APPEND(StatusStr);
         RunHide(command.c_str());
 
@@ -283,18 +295,18 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
 
 void MainWindow::on_StopShutdown_clicked()
 {
-    char StatusStr[114]="";
+    char StatusStr[MAX_COMMAND_CHAR]="";
 
     LOG_APPEND("正在取消关机...");
 
 
     if(not MoreOption[OTHER_MACHINE])
     {
-        LOG_APPEND("命令为\"ShutMgr.Ext -a\"");
+        LOG_APPEND("命令为「ShutMgr.Ext -a」");
 //        RunHide("shutmgr.ext -a"); 这个好像没效果，换成system有效果但是有弹窗
         RunHide("taskkill -im ShutMgr.Ext.exe -f");
 
-        sprintf_s(StatusStr,114,"正在取消..., 命令为\"shutdown -a\"");
+        sprintf_s(StatusStr,MAX_COMMAND_CHAR,"正在取消..., 命令为「shutdown -a」");
         LOG_APPEND(StatusStr);
         RunHide("shutdown -a");
 
@@ -304,7 +316,7 @@ void MainWindow::on_StopShutdown_clicked()
         int MachineCount=MachineNameList.length();
             for(int i=0;i<MachineCount;i++)
             {
-                sprintf_s(StatusStr,114,"正在取消 %d/%d..., 命令为\"%s\"",
+                sprintf_s(StatusStr,MAX_COMMAND_CHAR,"正在取消 %d/%d..., 命令为「%s」",
                           i+1,
                           MachineCount,
                           ("shutdown -a -m "+MachineNameList[i].toStdString()).c_str());

@@ -54,7 +54,7 @@
     <bool>false</bool>
    </property>
    <property name="placeholderText">
-    <string>输入计算机名</string>
+    <string>输入计算机名(太长了是会坏掉的)</string>
    </property>
   </widget>
   <widget class="QPushButton" name="AddMachine">

@@ -35,6 +35,32 @@ inline bool CheckExt(void)
 }
 
 #define LOG_APPEND(x)\
-    ui->StatusLabel->setText((x));Log+=((QString)MyFuncs::GetTime()+(QString)"\t"+x);Log+="\n";logWindow->on_Refresh_clicked()
-#define RunHide(commandline) WinExec(commandline,SW_HIDE)
+    ui->StatusLabel->setText((x));\
+    Log+=((QString)MyFuncs::GetTime()+(QString)"\t"+x);\
+    Log+="\n";\
+    logWindow->on_Refresh_clicked();\
+    ui->StatusLabel->setToolTip(x)
+
+#define RunHide(commandline) WinExec((commandline),SW_HIDE);
+/*\
+switch (WinExec(commandline,SW_HIDE)) {\
+case 0:\
+    QMessageBox::critical(this,"错误","内存不足");\
+    break;\
+case ERROR_BAD_FORMAT:\
+    QMessageBox::critical(this,\
+                          "错误","ShutMgr.Ext不是有效的程序!\n"\
+                                 "请检查它是否损坏或无权限访问, 或到下面的网址重新下载安装\n"\
+                                 "https://github.com/CommandPrompt-Wang/shutdown-manager/releases");\
+    break;\
+case ERROR_FILE_NOT_FOUND:\
+case ERROR_PATH_NOT_FOUND:\
+    QMessageBox::critical(this,\
+                          "错误","找不到ShutMgr.Ext!\n"\
+                                 "这可能是它需要特殊的权限，或在主程序运行过程中被删除\n"\
+                                 "请检查它是否损坏或无权限访问, 或到下面的网址重新下载安装\n"\
+                                 "https://github.com/CommandPrompt-Wang/shutdown-manager/releases");\
+default:\
+    break;\
+}*/
 #endif // MYFUNCS_H
