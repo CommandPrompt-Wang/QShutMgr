@@ -51,7 +51,7 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
     - ShutMgr.Ext.exe  
         - 隐藏了程序窗口   
   
-### v1.14.514(呕   
+### v1.14.514.1919(呕   
 - 新功能   
     - ShutMgr.exe   
         1. 支持了指定远程计算机的功能(命令: shutdown ... -m xxx)   
