@@ -368,7 +368,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;执行操作前等待的时间(单位为秒，范围为 0-315360000)，目前仅支持关机、重启&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -t xxx&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;执行操作前等待的时间(单位为秒，范围为 0-315360000)&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;不支持“立即关机”&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -t xxx&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>延时(秒)</string>

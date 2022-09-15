@@ -18,7 +18,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     ShutMgr_Ext.h
 
-VERSION = 1.14.514
+VERSION = 1.14.514.1919
 
 #RC_ICONS = app.ico
 
