@@ -4,5 +4,6 @@
         <file>resources/Programico.ico</file>
         <file>resources/UAC.png</file>
         <file>resources/refresh.png</file>
+        <file>resources/Reason_code_list.png</file>
     </qresource>
 </RCC>

@@ -625,7 +625,7 @@
           </size>
          </property>
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;提供重新启动或关闭的原因。 &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -d [P|U]:xx:yy&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;提供重新启动或关闭的原因。 &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -d [P|U]:xx:yy&lt;/span&gt;&lt;/p&gt;&lt;p&gt;系统给的表&lt;span style=&quot; color:#114514;&quot;&gt;(好像不怎么靠谱...&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;img width=&quot;250&quot; src=&quot;:/new/prefix1/resources/Reason_code_list.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
           <string>关闭原因</string>
@@ -900,8 +900,6 @@ font: italic 9pt &quot;Arial&quot;;</string>
    <zorder>line_10</zorder>
    <zorder>StatusLabel</zorder>
    <zorder>OpenLogWindow</zorder>
-   <zorder>check_GiveReason</zorder>
-   <zorder>comboBox_ReasonType</zorder>
   </widget>
  </widget>
  <resources>
