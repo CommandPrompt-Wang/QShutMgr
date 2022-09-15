@@ -3,7 +3,7 @@
 Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
 
 ## 用法
-<img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/184076819-ad5e8cdf-5ad8-45d2-b01f-703b17cb6817.png">  
+<img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/190382391-1c56fe84-24f8-4786-93a9-0208166f4fcb.png">
   
 1. 在上面一栏中选择基本功能<br>
 2. 然后在下一栏中选择高级选项<br>    
@@ -57,7 +57,7 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
         1. 支持了指定远程计算机的功能(命令: shutdown ... -m xxx)   
             - 提示：程序只会检查出基本的名称错误（如带有空格，空的计算机名等等）！   
         2. 添加了状态栏和日志窗口，日志支持保存  
-	3. 添加了“指定关机原因”选项(命令: shutdown ... -d [P:|U:|置空]xx:yy)
+	3. 添加了“指定关机原因”选项(命令: shutdown ... -d [P:|U:|置空]xx:yy)  
         4. 添加了与版本号相关的 彩 蛋 (噔 噔 咚    
 - 问题修复   
     - ShutMgr.exe   
@@ -65,7 +65,9 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
         2. 添加了未获取到管理员权限的警告   
         3. 修复了错误的工作目录导致的无法调用Ext的问题   
         4. 添加了无法访问Ext的警告   
-        5. 添加了未选择任何操作的警告   
+        5. 添加了未选择任何操作的警告  
+	6. 修复了指定计算机窗口可以打开多个的问题
+	7. 修改了部分未及时更新的文本
     - ShutMgr.Ext.exe   
         1. 重写了参数部分代码，对开关的识别更高效   
         2. 修复了 -fw, -f, 参数不被识别的问题   
