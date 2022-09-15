@@ -31,7 +31,8 @@ extern  "C"  {
 int ChosenShutdownType=0;
 using namespace std;
 int WaitingTime=0;
-bool toFirmware=false;
+bool toFirmware=false; //-fw
+bool Forcefully=false; //-f
 
 int main(int argc, char *argv[])
 {
@@ -99,6 +100,13 @@ int main(int argc, char *argv[])
             else
             {ErrOutput("\"-fw\" 参数只能搭配 \"-h\"使用！");}
         }
+        if(ArgCmp(argv[i],"-f"))
+        {
+            if(ChosenShutdownType==HIBERNATE)
+            {Forcefully=true;}
+            else
+            {ErrOutput("\"-f\" 参数只能搭配 \"-h\"使用！");}
+        }
     }
     DWORD pid;//占位
     if(FindProcess("ShutMgr.Ext.exe",pid))
@@ -108,10 +116,12 @@ int main(int argc, char *argv[])
     Sleep(WaitingTime*1000);
     if(ChosenShutdownType==HIBERNATE)
     {
+        string command="shutdown -h";
         if(toFirmware)
-            return RunHide("shutdown -h -fw");
-        else
-            return RunHide("shutdown -h");
+            command+=" -fw";
+        if(Forcefully)
+            command+=" -f";
+        RunHide(command.c_str());
     }
     else if(ChosenShutdownType==SLEEP)
     {

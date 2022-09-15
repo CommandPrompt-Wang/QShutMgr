@@ -86,6 +86,8 @@ private slots:
 
     void on_OpenLogWindow_linkActivated(const QString &link);
 
+    void on_check_GiveReason_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 };

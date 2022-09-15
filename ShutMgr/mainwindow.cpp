@@ -15,12 +15,16 @@
 #include "uac.h"
 
 #define FULL_CHECKED    2   //button fully checked [√]
+
+int ChosenShutdownType=0;//type
 #define SHUTDOWN        1
 #define RESTART         2
 #define HIBERNATE       3   //使用ShutMgr.Ext
 #define SLEEP           4   //同上
 #define LOGOUT          5   //同上
 #define SHUTDOWN_P      6
+
+bool MoreOption[10]={0};//options(switches)
 #define FORCE           0
 #define WAIT            1
 #define \
@@ -30,15 +34,31 @@
 #define \
     TO_ADVANCED_STARTUP 5
 #define OTHER_MACHINE   6
+#define GIVE_REASON     7
 #define COMMENT         9
 
-int ChosenShutdownType=0;
-bool MoreOption[10]={0};
+int ReasonNum[2]={0,0};//Major&Minor
+#define MAJOR           0
+#define MINOR           1
+
+//针对combox_ReasonType
+#define PLANNED         0
+#define OUT_OF_PLAN     1
+#define USER_DEFINED    2
+
+
 int Time_To_Wait=30;
+
 QList<QString> MachineNameList;
+
+//之所以使用静态窗口是因为日志窗口、远程计算机选择窗口不能重复打开
 static LogWindow* logWindow;
+static ChoseMachine* MachineChoosing;
+
 QString Log;
 bool EsterEgg=false;
+
+#define Disable_and_Uncheck(x)  (x)->setEnabled(false); (x)->setChecked(false);
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -46,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     logWindow=new LogWindow;
+    MachineChoosing=new ChoseMachine;
     LOG_APPEND("主程序启动");
     QDir::setCurrent(qApp->applicationDirPath());
     LOG_APPEND("检查扩展...");
@@ -161,13 +182,6 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
         command+=Str_Time_To_Wait;
         command+=" ";
     }
-    if(MoreOption[COMMENT]==true)
-    {
-        command+=" -c \"";
-        QString temp=ui->Comment_Text->document()->toPlainText();
-        command+=Utf8ToGbk(temp.toStdString().c_str());
-        command+="\" ";
-    }
     if(MoreOption[RESTART_REGISTED]==true)
     {
         if(ChosenShutdownType==SHUTDOWN)
@@ -191,6 +205,49 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
             MachineCount=MachineNameList.length();
     }
 
+//    p indicates that the restart or shutdown is planned.
+//    u indicates that the reason is user defined.
+//        If neither p nor u is specified the restart or shutdown is
+//        unplanned.
+    if(MoreOption[GIVE_REASON])
+    {
+        command+=" -d ";
+        switch(ui->comboBox_ReasonType->currentIndex())
+        {
+            case PLANNED        :command+="P:";
+                break;
+            case OUT_OF_PLAN    :
+                break;
+            case USER_DEFINED   :command+="U:";
+                break;
+        }
+        char temp[5]; //65535，5位数
+        _itoa_s(ui->Number_MajorReason->value(),temp,10);
+        command+=temp;//major
+        command+=":";
+        _itoa_s(ui->Number_MinorReason->value(),temp,10);
+        command+=temp;//minor
+        command+=" ";
+    }
+    std::string command_for_log=command;
+    //这里我偷懒了, 创建了command的副本供日志窗口使用
+    //因为日志窗口采用UTF8编码，而系统命令行采用ANSI编码
+    //所以command_for_log用的是UTF编码
+    //comman用的是GBK(中文系统)
+    //所以command需要UTF8ToGbk()
+    //command_for_log不能要UTF8ToGbk()
+    if(MoreOption[COMMENT]==true)
+    {
+        command+=" -c \"";
+        command_for_log=command;
+        QString temp=ui->Comment_Text->document()->toPlainText();
+        command+=Utf8ToGbk(temp.toStdString().c_str());//转换编码为GBK，否则乱码
+        command_for_log+=temp.toStdString();
+        //以后转换成ANSI系统编码...
+        command+="\" ";//添加引号->支持空格
+        command_for_log+="\"";
+    }
+
 //----------正式执行----------
 //调用shutdown.exe 或 ShutMgr.Ext（API、多线程后面编）
 
@@ -204,10 +261,10 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
         for(int i=0;i<MachineCount;i++)
         {
             sprintf_s(StatusStr,114,
-                      "命令为\"%s\", 正在执行 %d/%d...",
-                      (command+" -m "+(MachineNameList[i].toStdString())).c_str(),
+                      "正在执行 %d/%d..., 命令为\"%s\"",
                       i+1,
-                      MachineCount);
+                      MachineCount,
+                      (command_for_log+" -m "+(MachineNameList[i].toStdString())).c_str());
             LOG_APPEND(StatusStr);
 
             RunHide((command+" -m "+MachineNameList[i].toStdString()).c_str());
@@ -215,7 +272,7 @@ void MainWindow::on_Perform_clicked()       //操作执行部分
         }
     else//本机
     {
-        sprintf_s(StatusStr,114,"命令为\"%s\", 正在执行...",command.c_str());
+        sprintf_s(StatusStr,114,"正在执行..., 命令为\"%s\"",command_for_log.c_str());
         LOG_APPEND(StatusStr);
         RunHide(command.c_str());
 
@@ -237,7 +294,7 @@ void MainWindow::on_StopShutdown_clicked()
 //        RunHide("shutmgr.ext -a"); 这个好像没效果，换成system有效果但是有弹窗
         RunHide("taskkill -im ShutMgr.Ext.exe -f");
 
-        sprintf_s(StatusStr,114,"命令为\"shutdown -a\", 正在执行...");
+        sprintf_s(StatusStr,114,"正在取消..., 命令为\"shutdown -a\"");
         LOG_APPEND(StatusStr);
         RunHide("shutdown -a");
 
@@ -247,11 +304,10 @@ void MainWindow::on_StopShutdown_clicked()
         int MachineCount=MachineNameList.length();
             for(int i=0;i<MachineCount;i++)
             {
-                sprintf_s(StatusStr,114,"命令为\"%s\"正在取消 %d/%d...",
-                          ("shutdown -a -m "+
-                           MachineNameList[i].toStdString()).c_str(),
+                sprintf_s(StatusStr,114,"正在取消 %d/%d..., 命令为\"%s\"",
                           i+1,
-                          MachineCount);
+                          MachineCount,
+                          ("shutdown -a -m "+MachineNameList[i].toStdString()).c_str());
                 LOG_APPEND(StatusStr);
 
                 RunHide(((std::string)"shutdown "+MachineNameList[i].toStdString()).c_str());
@@ -280,11 +336,12 @@ void MainWindow::on_Shutdown_clicked()
 
     ui->ToBIOS->setEnabled(true);
 
-    ui->ToAdvStartUp->setEnabled(false);
-    ui->ToAdvStartUp->setChecked(false);
+    Disable_and_Uncheck(ui->ToAdvStartUp);
 
     ui->SetMachine->setEnabled(true);
     ui->ChooseMachine_but->setEnabled(true);
+
+    ui->check_GiveReason->setEnabled(true);
 }
 
 void MainWindow::on_Restart_clicked()
@@ -299,8 +356,7 @@ void MainWindow::on_Restart_clicked()
 
     ui->RestartRegistedProgram->setEnabled(true);
 
-    ui->PrepareForHybrid->setEnabled(false);
-    ui->PrepareForHybrid->setChecked(false);
+    Disable_and_Uncheck(ui->PrepareForHybrid);
 
     ui->ToBIOS->setEnabled(true);
 
@@ -308,6 +364,8 @@ void MainWindow::on_Restart_clicked()
 
     ui->SetMachine->setEnabled(true);
     ui->ChooseMachine_but->setEnabled(true);
+
+    ui->check_GiveReason->setEnabled(true);
 }
 
 void MainWindow::on_Shutdown_p_clicked()
@@ -316,28 +374,24 @@ void MainWindow::on_Shutdown_p_clicked()
 
     ui->Force_Shutdown->setEnabled(true);
 
-    ui->WaitingTimeCheckBox->setEnabled(false);
-    ui->WaitingTimeCheckBox->setChecked(false);
+    Disable_and_Uncheck(ui->WaitingTimeCheckBox);
 
     ui->Comment_Text->setEnabled(false);
 
-    ui->Comment->setEnabled(false);
-    ui->Comment->setChecked(false);
+    Disable_and_Uncheck(ui->Comment);
 
-    ui->RestartRegistedProgram->setEnabled(false);
-    ui->RestartRegistedProgram->setChecked(false);
+    Disable_and_Uncheck(ui->RestartRegistedProgram);
 
-    ui->PrepareForHybrid->setEnabled(false);
-    ui->PrepareForHybrid->setChecked(false);
+    Disable_and_Uncheck(ui->PrepareForHybrid)
 
     ui->ToBIOS->setEnabled(true);
 
-    ui->ToAdvStartUp->setEnabled(false);
-    ui->ToAdvStartUp->setChecked(false);
+    Disable_and_Uncheck(ui->ToAdvStartUp)
 
-    ui->SetMachine->setEnabled(false);
-    ui->SetMachine->setChecked(false);
+    Disable_and_Uncheck(ui->SetMachine)
     ui->ChooseMachine_but->setEnabled(false);
+
+    ui->check_GiveReason->setEnabled(true);
 }
 
 void MainWindow::on_Hibernate_clicked()
@@ -348,23 +402,20 @@ void MainWindow::on_Hibernate_clicked()
     ui->WaitingTimeCheckBox->setEnabled(true);  //已添加延时
     ui->Comment_Text->setEnabled(false);
 
-    ui->Comment->setEnabled(false);
-    ui->Comment->setChecked(false);
+    Disable_and_Uncheck(ui->Comment);
 
-    ui->RestartRegistedProgram->setEnabled(false);
-    ui->RestartRegistedProgram->setChecked(false);
+    Disable_and_Uncheck(ui->RestartRegistedProgram);
 
-    ui->PrepareForHybrid->setEnabled(false);
-    ui->PrepareForHybrid->setChecked(false);
+    Disable_and_Uncheck(ui->PrepareForHybrid)
 
     ui->ToBIOS->setEnabled(true);
 
-    ui->ToAdvStartUp->setEnabled(false);
-    ui->ToAdvStartUp->setChecked(false);
+    Disable_and_Uncheck(ui->ToAdvStartUp)
 
-    ui->SetMachine->setEnabled(false);
-    ui->SetMachine->setChecked(false);
+    Disable_and_Uncheck(ui->SetMachine)
     ui->ChooseMachine_but->setEnabled(false);
+
+    Disable_and_Uncheck(ui->check_GiveReason)
 }
 
 
@@ -372,31 +423,26 @@ void MainWindow::on_Sleep_clicked()
 {
     ChosenShutdownType=SLEEP;
 
-    ui->Force_Shutdown->setEnabled(false);
-    ui->Force_Shutdown->setChecked(false);
+    Disable_and_Uncheck(ui->Force_Shutdown);
 
     ui->WaitingTimeCheckBox->setEnabled(true);  //已添加延时
 
     ui->Comment_Text->setEnabled(false);
 
-    ui->Comment->setEnabled(false);
-    ui->Comment->setChecked(false);
+    Disable_and_Uncheck(ui->Comment)
 
-    ui->RestartRegistedProgram->setEnabled(false);
-    ui->RestartRegistedProgram->setChecked(false);
+    Disable_and_Uncheck(ui->RestartRegistedProgram)
 
-    ui->PrepareForHybrid->setEnabled(false);
-    ui->PrepareForHybrid->setChecked(false);
+    Disable_and_Uncheck(ui->PrepareForHybrid);
 
-    ui->ToBIOS->setEnabled(false);
-    ui->ToBIOS->setChecked(false);
+    Disable_and_Uncheck(ui->ToBIOS)
 
-    ui->ToAdvStartUp->setEnabled(false);
-    ui->ToAdvStartUp->setChecked(false);
+    Disable_and_Uncheck(ui->ToAdvStartUp);
 
-    ui->SetMachine->setEnabled(false);
-    ui->SetMachine->setChecked(false);
+    Disable_and_Uncheck(ui->SetMachine);
     ui->ChooseMachine_but->setEnabled(false);
+
+    Disable_and_Uncheck(ui->check_GiveReason);
 }
 
 
@@ -410,24 +456,20 @@ void MainWindow::on_Logout_clicked()
 
     ui->Comment_Text->setEnabled(false);
 
-    ui->Comment->setEnabled(false);
-    ui->Comment->setChecked(false);
+    Disable_and_Uncheck(ui->Comment);
 
-    ui->RestartRegistedProgram->setEnabled(false);
-    ui->RestartRegistedProgram->setChecked(false);
+    Disable_and_Uncheck(ui->RestartRegistedProgram);
 
-    ui->PrepareForHybrid->setEnabled(false);
-    ui->PrepareForHybrid->setChecked(false);
+    Disable_and_Uncheck(ui->PrepareForHybrid);
 
-    ui->ToBIOS->setEnabled(false);
-    ui->ToBIOS->setChecked(false);
+    Disable_and_Uncheck(ui->ToBIOS);
 
-    ui->ToAdvStartUp->setEnabled(false);
-    ui->ToAdvStartUp->setChecked(false);
+    Disable_and_Uncheck(ui->ToAdvStartUp);
 
-    ui->SetMachine->setEnabled(false);
-    ui->SetMachine->setChecked(false);
+    Disable_and_Uncheck(ui->SetMachine);
     ui->ChooseMachine_but->setEnabled(false);
+
+    Disable_and_Uncheck(ui->check_GiveReason);
 }
 
 void MainWindow::on_Comment_stateChanged(int arg1)
@@ -466,7 +508,7 @@ void MainWindow::on_Force_Shutdown_stateChanged(int arg1)
 
 void MainWindow::on_Quit_clicked()
 {
-    close();
+    exit(0);
 }
 
 void MainWindow::on_WaitingTime_valueChanged(int arg1)
@@ -552,9 +594,8 @@ void MainWindow::on_ToAdvStartUp_stateChanged(int arg1)
 
 void MainWindow::on_ChooseMachine_but_clicked()
 {
-    ChoseMachine *Popup=new ChoseMachine; //new+指针防止闪退
 //    Popup->setWindowModality(Qt::ApplicationModal);
-    Popup->show();
+    MachineChoosing->show();
 }
 
 
@@ -570,6 +611,24 @@ void MainWindow::on_SetMachine_stateChanged(int arg1)
 
 }
 
+void MainWindow::on_check_GiveReason_stateChanged(int arg1)
+{
+    if(arg1==FULL_CHECKED)
+    {
+        ui->Number_MajorReason->setEnabled(true);
+        ui->Number_MinorReason->setEnabled(true);
+        ui->comboBox_ReasonType->setEnabled(true);
+        MoreOption[GIVE_REASON]=true;
+    }
+    else
+    {
+        ui->Number_MajorReason->setEnabled(false);
+        ui->Number_MinorReason->setEnabled(false);
+        ui->comboBox_ReasonType->setEnabled(false);
+        MoreOption[GIVE_REASON]=false;
+    }
+}
+
 void MainWindow::on_OpenLogWindow_linkActivated(const QString &link)
 {
     logWindow->show();
@@ -578,10 +637,10 @@ void MainWindow::on_OpenLogWindow_linkActivated(const QString &link)
 
 void MainWindow::on_About_linkActivated(const QString &link)
 {
-    QString aboutStr="关机管理器 ver-1.14.514\n\n"
-                     "使用（开源） Qt 5.1.0 开发\n\n"
-                     "\t版权所有(C)2022 Command Prompt\n"
-                     "编译:MSVC 2015(32-bit)，MSVC 2017(64-bit)\n\n"
+    QString aboutStr="关机管理器 [版本 1.14.514]\n"
+                     "\t版权所有(c)2022 Command Prompt\n\n"
+                     "使用（开源） Qt 5.1.0 开发\n"
+                     "使用 MSVC 2015(32-bit), MSVC 2017(64-bit) 编译\n\n"
                      "本程序为自由软件\n"
                      "您可依据自由软件基金会所发表的GNU通用公共授权条款，对本程序再次发布和/或修改\n"
                      "无论您依据的是本授权的第三版，或（您可选的）任一日后发行的版本。\n\n"
@@ -592,9 +651,10 @@ void MainWindow::on_About_linkActivated(const QString &link)
     if(EsterEgg==true)
         aboutStr="这事一个一个关机管理器啊啊啊啊啊啊\n"
                  "版本事1.14.514（呕\n\n"
-                 "使用（开源） Qt 5.1.0 开发\n\n"
-                 "\t版权所有(C)2022 Command Prompt\n"
-                 "编译:MSVC 2015(32-bit)，MSVC 2017(64-bit)\n\n"
+                 "\t版权所有(c)2022 Command Prompt(一个一个homo\n\n"
+                 "使用（开源） Qt (5.1.4)-(0.0.4)=5.1.0 开发\n"
+                 "使用 MSVC x(32-bit), MSVC y(64-bit) 编译\n"
+                 "x=11*45*1*4+11*4+5-14 y=-(1-145)*14+(11/(45-1)*4)\n\n"
                  "本程序为自由软件\n"
                  "您可依据自由软件基金会所发表的GNU通用公共授权条款，对本程序再次发布和/或修改\n"
                  "无论您依据的是本授权的第三版，或（您可选的）任一日后发行的版本。\n\n"
@@ -606,3 +666,4 @@ void MainWindow::on_About_linkActivated(const QString &link)
                               aboutStr);
 
 }
+
