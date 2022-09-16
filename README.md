@@ -1,7 +1,15 @@
-# Shutdown Manager\_关机管理器
-
-Powered by open-source Qt\_由开源版 Qt 开发(遵守 LGPL v3)
-
+# Shutdown Manager\_关机管理器  
+    
+Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)  
+   
+## 注意  
+1. <img width="554" alt="image" src="https://user-images.githubusercontent.com/62493399/190623419-abfb2dd9-b066-41e7-8c97-fe6e823d94b4.png">  
+2. ↑ 为了通过编译，我按照右边的方法修改了头文件 https://codereview.qt-project.org/c/qt/qtbase/+/236948/2/src/corelib/tools/qalgorithms.h  
+3. 根据开源协议“您需要将您使用的Qt库的完整源代码，包括您完成或应用的所有修改，交付给您的用户/客户。或者，您需要提供书面报价，其中包含有关如何获取源代码的说明。另请注意，这必须在您的控制之下(_~~我怎么管啊（悲~~_)，因此仅提供Qt项目或Qt公司提供的源代码链接是不够的。(_~~兄啊...我只有能力提供链接啊，总不可能‘提供书面报价’罢（悲~~_)”
+    1. 要获取Qt, 请先下载安装器:https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-unified-windows-x64-4.4.1-online.exe   
+    2. (使用清华源) installer(.exe) --mirror https://mirrors.tuna.tsinghua.edu.cn/qt   
+  
+   
 ## 用法
 <img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/190382391-1c56fe84-24f8-4786-93a9-0208166f4fcb.png">
   
