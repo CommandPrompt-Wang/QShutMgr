@@ -1,4 +1,5 @@
-# Shutdown Manager\_关机管理器  
+# QShutMgr
+# 关机管理器  
     
 Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)  
    
