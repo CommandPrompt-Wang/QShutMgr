@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>200</width>
-    <height>123</height>
+    <width>300</width>
+    <height>231</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>200</width>
-    <height>123</height>
+    <width>300</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>200</width>
-    <height>123</height>
+    <width>300</width>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -28,20 +28,20 @@
   <widget class="QListWidget" name="MachineList">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>180</width>
-     <height>71</height>
+     <x>20</x>
+     <y>20</y>
+     <width>261</width>
+     <height>141</height>
     </rect>
    </property>
   </widget>
   <widget class="QLineEdit" name="MachineEntering">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>85</y>
-     <width>146</width>
-     <height>15</height>
+     <x>20</x>
+     <y>170</y>
+     <width>201</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="inputMask">
@@ -54,16 +54,16 @@
     <bool>false</bool>
    </property>
    <property name="placeholderText">
-    <string>输入计算机名(太长了是会坏掉的)</string>
+    <string>输入计算机名...</string>
    </property>
   </widget>
   <widget class="QPushButton" name="AddMachine">
    <property name="geometry">
     <rect>
-     <x>158</x>
-     <y>85</y>
-     <width>15</width>
-     <height>15</height>
+     <x>230</x>
+     <y>170</y>
+     <width>21</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -76,10 +76,10 @@
   <widget class="QPushButton" name="RemoveMachine">
    <property name="geometry">
     <rect>
-     <x>175</x>
-     <y>85</y>
-     <width>15</width>
-     <height>15</height>
+     <x>260</x>
+     <y>170</y>
+     <width>21</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -98,14 +98,17 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>119</x>
-     <y>103</y>
-     <width>71</width>
-     <height>16</height>
+     <x>200</x>
+     <y>200</y>
+     <width>81</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>保存并关闭(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </widget>
  </widget>

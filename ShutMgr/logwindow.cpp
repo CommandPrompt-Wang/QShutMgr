@@ -5,7 +5,7 @@
 #include <QMessageBox>
 
 extern QString Log;
-
+extern int logLines;   //日志行数，方便滚动 大于6开始滚
 
 LogWindow::LogWindow(QWidget *parent) :
     QWidget(parent),
@@ -29,7 +29,10 @@ void LogWindow::on_Close_clicked()
 
 void LogWindow::on_Refresh_clicked()
 {
-    ui->LogText->setText(Log);
+    ui->LogText->append(Log);
+    Log="";
+//    ui->LogText->scroll(0,-16*logLines);
+//    ui->LogText->set
 }
 
 void LogWindow::on_Save_clicked()
@@ -47,7 +50,7 @@ void LogWindow::on_Save_clicked()
                               tr("无法写入！请检查文件名称是否合法或是否具有权限。"));
         return;
     }
-    File.write(Log.toStdString().c_str());
+    File.write(ui->LogText->toPlainText().toStdString().c_str());
     File.close();
 }
 

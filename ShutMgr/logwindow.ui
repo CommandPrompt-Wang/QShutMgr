@@ -2,23 +2,29 @@
 <ui version="4.0">
  <class>LogWindow</class>
  <widget class="QWidget" name="LogWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
+    <width>400</width>
     <height>200</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>330</width>
+    <width>400</width>
     <height>200</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>330</width>
+    <width>400</width>
     <height>200</height>
    </size>
   </property>
@@ -30,9 +36,12 @@
     <rect>
      <x>20</x>
      <y>10</y>
-     <width>291</width>
+     <width>361</width>
      <height>151</height>
     </rect>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
    </property>
    <property name="textInteractionFlags">
     <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -41,22 +50,25 @@
   <widget class="QPushButton" name="Close">
    <property name="geometry">
     <rect>
-     <x>239</x>
-     <y>168</y>
-     <width>71</width>
+     <x>290</x>
+     <y>170</y>
+     <width>91</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>关闭(&amp;C)</string>
    </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="Save">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>168</y>
-     <width>71</width>
+     <y>170</y>
+     <width>91</width>
      <height>20</height>
     </rect>
    </property>
@@ -67,7 +79,7 @@
   <widget class="QPushButton" name="Refresh">
    <property name="geometry">
     <rect>
-     <x>294</x>
+     <x>360</x>
      <y>10</y>
      <width>16</width>
      <height>16</height>

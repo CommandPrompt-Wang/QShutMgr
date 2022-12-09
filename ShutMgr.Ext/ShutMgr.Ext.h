@@ -14,8 +14,14 @@
 #include <windows.h>
 #include <tlhelp32.h>
 #include <ShellAPI.h>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <iconv.h>
+#endif
 
 #pragma comment(lib, "User32.lib")
+//#pragma execution_character_set("utf-8")
 
 //#include <QMessageBox>
 using namespace std;
@@ -77,8 +83,9 @@ inline void ErrOutput(std::string err)
 //    lstrcpy(TcharErr, (LPCWSTR)(err.c_str()));
 //    WinExec(((std::string)"msg %username% "+err).c_str(),SW_SHOW);
     MessageBoxA(NULL,err.c_str(),"错误",MB_OK);
-    cout<<err<<endl;
-    abort();
+    cout<<err.c_str()<<endl;
+//    abort();
+    exit(-1);
 }
 
 void HelpFunc(void)
@@ -86,23 +93,29 @@ void HelpFunc(void)
     ErrOutput("用法:\n"
           "ShutMgr.Ext [-h(ibernate)|-Sleep|-l(ogout)] [-t xxx] [-fw]\n"
           "[-a]\n"
-          "-h"     "\t使计算机休眠\n"
-          "-Sleep" "\t使计算机睡眠\n"
-          "-l"     "\t使用户登出(注销)\n"
-          "-t x"   "\t设置执行操作前的延时, x取值从0~315360000, \n"
-                   "\t如果不指定该选项, 则默认为无延迟(x=0), 这与shutdown.exe不同\n"
-          "-a"     "\t取消操作\n"
-          "-fw"    "\t启动时首先切换到BIOS/UEFI界面\n"
-          "注意: -fw 选项仅针对 -h, 且需要管理员权限\n"
+          "-h"      "\t使计算机休眠\n"
+          "-Sleep"  "\t使计算机睡眠\n"
+          "-l"      "\t使用户登出(注销)\n"
+          "-Lock"   "\t锁定计算机\n"
+          "-t x"    "\t设置执行操作前的延时, x取值从0~315360000, \n"
+                    "\t如果不指定该选项, 则默认值无延迟(x=60), 这与shutdown.exe相同\n"
+          "-a"      "\t取消包括本程序和shutdown.exe在内的关机、重启等操作，\n"
+          "-fw"     "\t启动时首先切换到BIOS/UEFI界面\n"
+          "-f"      "\t强制关闭正在运行的应用程序而不事先警告用户。\n"
+                    "\t当 -t 开关的 x 大于 0 时候默示带 -f\n"
+          "-c xxx"  "\t增加注释，用“\\n”代替换行\n\n"
+          "注意: -f 选项仅针对 -h,\n"
+          "     -fw 针对 -h 和 -a 且需要管理员权限\n"
+          "如果注释中含有空格，请将整个注释用英文引号括起来\n"
           "详细说明参见shutdown.exe -?\n");
 }
 
 //From Website
-bool FindProcess(std::string strProcessName, DWORD& nPid)
+bool FindProcess(LPCWSTR strProcessName, DWORD processPid)
 {
 
     TCHAR tszProcess[64] = { 0 };
-    lstrcpy(tszProcess, (LPCWSTR)(strProcessName.c_str()));
+    lstrcpy(tszProcess, strProcessName);
     //查找进程
     STARTUPINFO st;
     PROCESS_INFORMATION pi;
@@ -122,17 +135,39 @@ bool FindProcess(std::string strProcessName, DWORD& nPid)
     do {
         if (lstrcmp(ps.szExeFile, tszProcess) == 0)
         {
-            //找到指定的程序
-            nPid = ps.th32ProcessID;
-            CloseHandle(hSnapshot);
-//            printf("找到进程: %ls\n", tszProcess);
-            return true;
-            //getchar();
-            //return dwPid;
+            if(processPid!=ps.th32ProcessID)
+            {
+                //找到指定的程序
+                CloseHandle(hSnapshot);
+                //            printf("找到进程: %ls\n", tszProcess);
+                return true;
+                //getchar();
+                //return dwPid;
+            }
         }
     } while (Process32Next(hSnapshot, &ps));
     CloseHandle(hSnapshot);
     return false;
+}
+
+std::string GbkToUtf8(const char* src_str)
+{
+    std::string result;
+    wchar_t* strSrc;
+    char* szRes;
+    int len = MultiByteToWideChar(CP_ACP, 0, src_str, -1, NULL, 0);
+    strSrc = new wchar_t[len + 1];
+    MultiByteToWideChar(CP_ACP, 0, src_str, -1, strSrc, len);
+
+    len = WideCharToMultiByte(CP_UTF8, 0, strSrc, -1, NULL, 0, NULL, NULL);
+    szRes = new char[len + 1];
+    WideCharToMultiByte(CP_UTF8, 0, strSrc, -1, szRes, len, NULL, NULL);
+    result = szRes;
+    if (strSrc)
+        delete[]strSrc;
+    if (szRes)
+        delete[]szRes;
+    return result;
 }
 
 #define RunHide(commandline) WinExec(commandline,SW_HIDE)

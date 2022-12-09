@@ -10,12 +10,13 @@
 #define MAINWINDOW_H
 
 #include "ui_mainwindow.h"
-#include <MyFuncs.h>
-//#include <QMainWindow> both in MyFuncs.h
+//#include <MyFuncs.h>
+#include <QMainWindow>
 //#include <QMessageBox>
 #include <QTextCodec>
 
 #include <stdlib.h>
+#include <windows.h>
 #include <powrprof.h>
 
 #define and &&
@@ -23,6 +24,7 @@
 #define not !
 
 #pragma comment(lib, "PowrProf.lib")
+#pragma comment(lib, "user32.lib")
 
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
@@ -59,7 +61,7 @@ private slots:
 
     void on_Comment_stateChanged(int arg1);
 
-    void on_StopShutdown_clicked();
+//    void on_StopShutdown_clicked();
 
     void on_WaitingTimeCheckBox_stateChanged(int arg1);
 
@@ -87,6 +89,12 @@ private slots:
     void on_OpenLogWindow_linkActivated(const QString &link);
 
     void on_check_GiveReason_stateChanged(int arg1);
+
+    void on_LockComputer_clicked();
+
+    void on_AbortShutdown_clicked();
+
+//    void on_AbortShutdown_clicked(bool checked);
 
 private:
     Ui::MainWindow *ui;

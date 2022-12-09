@@ -81,3 +81,19 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)
         1. 重写了参数部分代码，对开关的识别更高效   
         2. 修复了 -fw, -f, 参数不被识别的问题   
         3. 添加了使用 -fw 参数时，未获取到管理员权限的警告   
+
+### v2.0.0.143  
+- 新功能  
+    - ShutMgr.exe&ShutMgr.Ext.exe  
+        1. 增加了休眠、睡眠、注销等的注释功能  
+        2. ShutMgr.exe 略微调整布局，解决文字可能显示不全的问题  
+        3. 使用ShutMgr.Notify.exe（见下）进行休眠、睡眠、注销等的通知  
+    - 【新】ShutMgr.Notify.exe  
+        - 用于在通知中心显示通知  
+- 问题修复  
+    - ShutMgr.exe  
+        1. 修复了某些操作执行时会卡死的问题  
+            - 但增加了少量cmd窗口弹窗（比之前少多了）  
+    - ShutMgr.Ext.exe  
+        - 无  
+        

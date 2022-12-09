@@ -32,6 +32,13 @@ void ChoseMachine::on_AddMachine_clicked()
                               QMessageBox::Ok);
         return;
     }
+    if(AddMachineName.size()==256)
+    {
+        QMessageBox::critical(this, tr("错误"),
+                              tr("计算机名不应超过256位"),
+                              QMessageBox::Ok);
+        return;
+    }
     if(AddMachineName.indexOf(" ",Qt::CaseInsensitive)!=-1)
     {
         QMessageBox::critical(this, tr("错误"),
@@ -46,6 +53,7 @@ void ChoseMachine::on_AddMachine_clicked()
                               QMessageBox::Ok);
         return;
     }
+
     ui->MachineList->addItem(AddMachineName);
     ui->MachineEntering->clear();
     ui->MachineList->sortItems();
