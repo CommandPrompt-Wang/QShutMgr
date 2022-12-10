@@ -96,6 +96,12 @@ private slots:
 
 //    void on_AbortShutdown_clicked(bool checked);
 
+    void on_LightModeOn_but_clicked();
+
+    void on_DarkModeOn_but_clicked();
+
+    void on_DarkModeAuto_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

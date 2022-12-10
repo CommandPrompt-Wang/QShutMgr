@@ -69,6 +69,8 @@ bool EsterEgg=false;
 bool AdminRequired;
 bool stop_Booting_to_BIOS;
 
+bool DarkModeOn=false;
+
 #define Disable_and_Uncheck(x)  (x)->setEnabled(false); (x)->setChecked(false);
 
 MainWindow::MainWindow(QWidget *parent)
@@ -77,12 +79,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    logWindow=new LogWindow;
-    MachineChoosing=new ChoseMachine;
-    trayIcon=new QSystemTrayIcon(this);
+    logWindow=new LogWindow;            //日志窗口
+    MachineChoosing=new ChoseMachine;   //计算机选择窗口
+    trayIcon=new QSystemTrayIcon(this); //通知
     trayIcon->setIcon(QIcon(":/new/prefix1/resources/Programico.ico"));
     LOG_APPEND("主程序启动");
-    QDir::setCurrent(qApp->applicationDirPath());
+    QDir::setCurrent(qApp->applicationDirPath());//设置工作目录
     LOG_APPEND("检查扩展...");
     if(MyFuncs::CheckExt()==false)
     {
@@ -92,14 +94,16 @@ MainWindow::MainWindow(QWidget *parent)
                              tr("ShutMgr.Ext.exe 不存在或无法访问！\n"
                                 "请检查该程序的位置或访问权限"));
         trayIcon->hide();
-        ui->Hibernate->setEnabled(false);
+        ui->Hibernate->setEnabled(false);       //禁用ShutMgr.Ext.exe相关内容
         ui->LockComputer->setEnabled(false);;
         ui->Logout->setEnabled(false);
         ui->Sleep->setEnabled(false);
-        ui->AbortShutdown->setEnabled(false);
+//        ui->AbortShutdown->setEnabled(false);
     }
     else
         {LOG_APPEND("检测到扩展程序");}
+//---------------夜间模式（实验性）------------
+    on_DarkModeAuto_clicked();
 }
 
 MainWindow::~MainWindow()
@@ -749,6 +753,8 @@ void MainWindow::on_check_GiveReason_stateChanged(int arg1)
         ui->Number_MajorReason->setEnabled(true);
         ui->Number_MinorReason->setEnabled(true);
         ui->comboBox_ReasonType->setEnabled(true);
+        ui->label_MajorReason->setEnabled(true);
+        ui->label_MinorReason->setEnabled(true);
         MoreOption[GIVE_REASON]=true;
     }
     else
@@ -756,6 +762,8 @@ void MainWindow::on_check_GiveReason_stateChanged(int arg1)
         ui->Number_MajorReason->setEnabled(false);
         ui->Number_MinorReason->setEnabled(false);
         ui->comboBox_ReasonType->setEnabled(false);
+        ui->label_MajorReason->setEnabled(false);
+        ui->label_MinorReason->setEnabled(false);
         MoreOption[GIVE_REASON]=false;
     }
 }
@@ -797,3 +805,33 @@ void MainWindow::on_About_linkActivated(const QString &link)
                               aboutStr);
 
 }
+
+void MainWindow::on_LightModeOn_but_clicked()
+{
+    DarkModeOn=false;
+    MainWindow::setStyleSheet("");
+    logWindow->setStyleSheet("");
+    MachineChoosing->setStyleSheet("");
+}
+
+void MainWindow::on_DarkModeOn_but_clicked()
+{
+    DarkModeOn=true;
+    MainWindow::setStyleSheet(MainWindow_DarkModeStyle);
+    logWindow->setStyleSheet(Logwindow_DarkModeStyle);
+    MachineChoosing->setStyleSheet(ChoseMachine_DarkModeStyle);
+}
+
+
+void MainWindow::on_DarkModeAuto_clicked()
+{
+    if(MyFuncs::getDarkModeStatus()==0) //1->light 0->dark
+    {
+        on_DarkModeOn_but_clicked();
+    }
+    else
+    {
+        on_LightModeOn_but_clicked();
+    }
+}
+

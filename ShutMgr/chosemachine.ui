@@ -25,6 +25,30 @@
   <property name="windowTitle">
    <string>指定计算机</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+	background-color: rgb(29, 29, 31);
+}
+*:enabled{
+	color: rgb(251, 251, 253);
+}
+*:disabled{ 
+	color: rgb(66, 66, 69);
+}
+QLineEdit{
+	border:1px solid;
+	
+	border-color: rgb(66, 66, 69);
+}
+QListWidget{
+	background-color: rgb(66, 66, 69);
+}
+
+QPushButton:enabled{
+	background-color: rgb(92, 92, 96);
+	border-radius:10 px;
+}</string>
+  </property>
   <widget class="QListWidget" name="MachineList">
    <property name="geometry">
     <rect>

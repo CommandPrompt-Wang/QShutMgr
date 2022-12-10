@@ -41,6 +41,9 @@
    <iconset resource="res.qrc">
     <normaloff>:/new/prefix1/resources/Programico.ico</normaloff>:/new/prefix1/resources/Programico.ico</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="About">
     <property name="geometry">
@@ -157,7 +160,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
        <x>20</x>
        <y>20</y>
        <width>341</width>
-       <height>41</height>
+       <height>45</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -191,7 +194,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;完全关闭并重启计算机。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -r&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;完全关闭并重启计算机。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -r&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>重启(&amp;R)</string>
@@ -213,7 +216,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;登出账户&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -l&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;登出账户&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -l&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>注销(&amp;L)</string>
@@ -235,7 +238,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;电脑保持开机，但耗电较少，应用保持打开状态&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;实验性功能; 需要管理员权限&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;电脑保持开机，但耗电较少，应用保持打开状态&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>睡眠(&amp;S)</string>
@@ -257,7 +260,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;(立刻)关闭电脑，但应用保持打开状态。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -h&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;(立刻)关闭电脑，但应用保持打开状态。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -h&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>休眠(&amp;H)</string>
@@ -279,7 +282,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;关闭计算机，默认延迟60秒&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -s&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;关闭计算机，默认延迟60秒&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -s&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>关机(&amp;C)</string>
@@ -301,7 +304,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;锁定计算机&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;锁定计算机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>锁定(&amp;K)</string>
@@ -326,7 +329,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;立即关闭本地计算机且没有提示。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -p&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;立即关闭本地计算机且没有提示。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -p&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>立即关机(&amp;P)</string>
@@ -342,7 +345,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;取消关机&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;只可选择“启动时不转到固件”&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#000000;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#000000;&quot;&gt;shutdown -a (-fw)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -a (-fw)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>取消关机(&amp;A)</string>
@@ -456,7 +459,7 @@ font: italic 9pt &quot;Arial&quot;;</string>
       </font>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;关机，在下一次登录时，启动关机之前打开的程序?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;官方说明: 关闭计算机。在下一次启动时，如果启用了自动重启登录，则将自动登录并锁定上次交互用户。登录后，重启任何已注册的应用程序。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;与&amp;quot;快速启动&amp;quot;冲突、转到高级启动选项冲突&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -sg&lt;/span&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;(替换-s) / shutdown -g(替换-r)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic; color:#1d1d1f;&quot;&gt;关机，在下一次登录时，启动关机之前打开的程序?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;官方说明: 关闭计算机。在下一次启动时，如果启用了自动重启登录，则将自动登录并锁定上次交互用户。登录后，重启任何已注册的应用程序。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;与&amp;quot;快速启动&amp;quot;冲突、转到高级启动选项冲突&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -sg&lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;(替换-s) / shutdown -g(替换-r)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>重启注册的应用程序</string>
@@ -536,14 +539,14 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;·启动时转到固件&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在下次启动时先跳转至电脑固件设置界面(BIOS/UEFI)&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;可以与关机/重启/休眠一同使用，&lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;需要管理员权限，与“指定计算机”冲突&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown [-s|-r|-h|-p] -fw&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;·启动时不转到固件&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;取消在下次启动时跳转至电脑固件(BIOS/UEFI)&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;仅用于&amp;quot;取消关机&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;在下次启动时先跳转至电脑固件设置界面(BIOS/UEFI)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;可以与关机/重启/休眠一同使用，&lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;需要管理员权限，与“指定计算机”冲突&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown [-s|-r|-h|-p] -fw&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#1d1d1f;&quot;&gt;·启动时不转到固件&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;取消在下次启动时跳转至电脑固件(BIOS/UEFI)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;仅用于&amp;quot;取消关机&amp;quot;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;需要管理员权限&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -a -fw&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -a -fw&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>启动时转到固件</string>
@@ -552,7 +555,7 @@ hr { height: 1px; border-width: 0; }
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>138</x>
+       <x>128</x>
        <y>43</y>
        <width>16</width>
        <height>16</height>
@@ -596,47 +599,10 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;提供重新启动或关闭的原因。 &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -d [P|U]:xx:yy&lt;/span&gt;&lt;/p&gt;&lt;p&gt;系统给的表&lt;span style=&quot; color:#114514;&quot;&gt;(好像不怎么靠谱...&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;img width=&quot;250&quot; src=&quot;:/new/prefix1/resources/Reason_code_list.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;提供重新启动或关闭的原因。 &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown ... -d [P|U]:xx:yy&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;系统给的表(好像不怎么靠谱...&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/prefix1/resources/Reason_code_list.png&quot; width=&quot;250&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>关闭原因</string>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="ChooseMachine_but">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>41</y>
-       <width>21</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>21</width>
-       <height>21</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;打开计算机列表...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="text">
-      <string>...</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_ReasonType">
@@ -684,43 +650,6 @@ hr { height: 1px; border-width: 0; }
        <string>自定义</string>
       </property>
      </item>
-    </widget>
-    <widget class="QCheckBox" name="SetMachine">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>80</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>80</width>
-       <height>21</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>100000</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;指定关闭的计算机&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;与“启动时转到固件”冲突&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#000000;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#000000;&quot;&gt;shutdown -m xxx&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="text">
-      <string>指定计算机</string>
-     </property>
     </widget>
     <widget class="QSpinBox" name="Number_MinorReason">
      <property name="enabled">
@@ -790,7 +719,7 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;强制关闭正在运行的应用程序。当延时大于 0 秒时，默认含有该参数&lt;/p&gt;&lt;p&gt;可以和关机、重启、休眠、注销同时使用&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown [-s|-r|-h|-l|-p] -f&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;强制关闭正在运行的应用程序。当延时大于 0 秒时，默认含有该参数&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;可以和关机、重启、休眠、注销同时使用&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown [-s|-r|-h|-l|-p] -f&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>强制</string>
@@ -827,7 +756,7 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;关闭计算机，并进行准备以快速启动。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;与“重启注册的应用程序”冲突&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;只能与关机(-s)一起使用。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt; shutdown [-s] -hybrid&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;关闭计算机，并进行准备以快速启动。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;与“重启注册的应用程序”冲突&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;只能与关机(-s)一起使用。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt; shutdown [-s] -hybrid&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>快速启动</string>
@@ -869,7 +798,7 @@ hr { height: 1px; border-width: 0; }
     </widget>
     <widget class="QLabel" name="label_MajorReason">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -898,7 +827,7 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;主要原因对应的编号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>主要:</string>
@@ -935,7 +864,7 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;重新启动计算机，然后转到高级启动选项菜单。&lt;/p&gt;&lt;p&gt;只可与&amp;quot;重启&amp;quot;搭配使用，&lt;span style=&quot; font-weight:700; color:#ff0004;&quot;&gt;与“重启注册的应用程序”冲突。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown -o&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;重新启动计算机，然后转到高级启动选项菜单。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;只可与&amp;quot;重启&amp;quot;搭配使用，&lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;与“重启注册的应用程序”冲突。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -o&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>转到高级启动选项</string>
@@ -943,7 +872,7 @@ hr { height: 1px; border-width: 0; }
     </widget>
     <widget class="QLabel" name="label_MinorReason">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -972,7 +901,7 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;次要原因对应的编号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>次要:</string>
@@ -1009,7 +938,7 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;执行操作前等待的时间(单位为秒，范围为 0-315360000)&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ff0000;&quot;&gt;不支持“立即关机”&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -t xxx&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;执行操作前等待的时间(单位为秒，范围为 0-315360000)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;不支持“立即关机”&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown ... -t xxx&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>延时(秒)</string>
@@ -1052,12 +981,104 @@ hr { height: 1px; border-width: 0; }
       </size>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;对关机的说明&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic;&quot;&gt;shutdown ... -c &amp;quot;xxx&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;对关机的说明&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令: &lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown ... -c &amp;quot;xxx&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>注释(请不要换行):</string>
      </property>
     </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>101</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QCheckBox" name="SetMachine">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>21</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100000</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;指定关闭的计算机&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;与“启动时转到固件”冲突&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#1d1d1f;&quot;&gt;命令:&lt;/span&gt;&lt;span style=&quot; font-weight:700; font-style:italic; color:#1d1d1f;&quot;&gt;shutdown -m xxx&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>指定计算机</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="ChooseMachine_but">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>15</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>15</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;打开计算机列表...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <zorder>label</zorder>
+    <zorder>RestartRegistedProgram</zorder>
+    <zorder>check_GiveReason</zorder>
+    <zorder>comboBox_ReasonType</zorder>
+    <zorder>SetMachine</zorder>
+    <zorder>Force_Shutdown</zorder>
+    <zorder>PrepareForHybrid</zorder>
+    <zorder>label_MajorReason</zorder>
+    <zorder>ToAdvStartUp</zorder>
+    <zorder>label_MinorReason</zorder>
+    <zorder>WaitingTimeCheckBox</zorder>
+    <zorder>Comment</zorder>
+    <zorder>Number_MinorReason</zorder>
+    <zorder>Number_MajorReason</zorder>
+    <zorder>Comment_Text</zorder>
+    <zorder>ToBIOS</zorder>
+    <zorder>ChooseMachine_but</zorder>
+    <zorder>WaitingTime</zorder>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
@@ -1176,6 +1197,93 @@ hr { height: 1px; border-width: 0; }
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="DarkModeOn_but">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;夜间模式开&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/new/prefix1/resources/dark.ico</normaloff>:/new/prefix1/resources/dark.ico</iconset>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="LightModeOn_but">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;夜间模式关&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/new/prefix1/resources/light.ico</normaloff>:/new/prefix1/resources/light.ico</iconset>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="DarkModeAuto">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>0</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#1d1d1f;&quot;&gt;使用系统设置&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/new/prefix1/resources/darkAuto.ico</normaloff>:/new/prefix1/resources/darkAuto.ico</iconset>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
  </widget>

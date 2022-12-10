@@ -5,6 +5,7 @@
 #include <QDir>
 #include <windows.h>
 #include <QString>
+#include <QSettings>
 #include <time.h>
 
 extern QList<QString> MachineNameList;
@@ -18,30 +19,37 @@ extern QList<QString> MachineNameList;
 
 #define RunHide(commandline) WinExec((commandline),SW_HIDE);
 
-namespace MyFuncs{
-//-------------------自己写的函数
-inline void replacestr(std::string& str,std::string find,std::string replace)
-{
-    size_t pos=str.find(find);
-    str.erase(pos,find.length());
-    str.insert(pos,replace);
-}
-inline const char* GetTime(void)
-{
-    time_t Unix_Time=time(NULL);
-    tm Tm;
-    static char StrTime[114];
-    localtime_s(&Tm,&Unix_Time);
-    asctime_s(StrTime,sizeof(StrTime),&Tm);
-    return StrTime;
-}
+namespace MyFuncs{//好像往里面写要link 错误？
+//    -------------------自己写的函数
+    inline void replacestr(std::string& str,std::string find,std::string replace)
+    {
+        size_t pos=str.find(find);
+        str.erase(pos,find.length());
+        str.insert(pos,replace);
+    }
+    inline const char* GetTime(void)
+    {
+        time_t Unix_Time=time(NULL);
+        tm Tm;
+        static char StrTime[114];
+        localtime_s(&Tm,&Unix_Time);
+        asctime_s(StrTime,sizeof(StrTime),&Tm);
+        return StrTime;
+    }
 
-inline bool CheckExt(void)
-{
-    return !_waccess(L"ShutMgr.Ext.exe",04);    //04->可读取
-    //返回值0 -> 可以     返回值-1 -> 不可以
-}
+    inline bool CheckExt(void)
+    {
+        return !_waccess(L"ShutMgr.Ext.exe",04);    //04->可读取
+        //返回值0 -> 可以     返回值-1 -> 不可以
+    }
+//修改自https://blog.csdn.net/qq_37529913/article/details/126767357
 
+    bool getDarkModeStatus()
+    {
+        QSettings ConfigRead("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                                                 QSettings::NativeFormat);
+        return ConfigRead.value("AppsUseLightTheme").toBool();
+    }
 }
 
 void abort_Shutdown(bool toFirmware)
@@ -55,7 +63,6 @@ void abort_Shutdown(bool toFirmware)
         RunHide("ShutMgr.Ext.exe -a");
     }
 }
-
 #define CHECK_ADMIN()\
 if(AdminRequired&&(!IsUserAnAdmin()))\
 {\
@@ -83,25 +90,65 @@ if(AdminRequired&&(!IsUserAnAdmin()))\
     return;\
 }\
 
-/*\
-switch (WinExec(commandline,SW_HIDE)) {\
-case 0:\
-    QMessageBox::critical(this,"错误","内存不足");\
-    break;\
-case ERROR_BAD_FORMAT:\
-    QMessageBox::critical(this,\
-                          "错误","ShutMgr.Ext不是有效的程序!\n"\
-                                 "请检查它是否损坏或无权限访问, 或到下面的网址重新下载安装\n"\
-                                 "https://github.com/CommandPrompt-Wang/shutdown-manager/releases");\
-    break;\
-case ERROR_FILE_NOT_FOUND:\
-case ERROR_PATH_NOT_FOUND:\
-    QMessageBox::critical(this,\
-                          "错误","找不到ShutMgr.Ext!\n"\
-                                 "这可能是它需要特殊的权限，或在主程序运行过程中被删除\n"\
-                                 "请检查它是否损坏或无权限访问, 或到下面的网址重新下载安装\n"\
-                                 "https://github.com/CommandPrompt-Wang/shutdown-manager/releases");\
-default:\
-    break;\
-}*/
+
+const char MainWindow_DarkModeStyle[]=
+        "*{\n"
+        "    background-color: rgb(29, 29, 31);\n"
+        "}\n"
+        "*:enabled{\n"
+        "    color: rgb(251, 251, 253);\n"
+        "}\n"
+        "*:disabled{ \n"
+        "    color: rgb(66, 66, 69);\n"
+        "}\n"
+        "QPushButton:enabled{\n"
+        "    background-color: rgb(92, 92, 96);\n"
+        "    border-radius:10 px;\n"
+        "}\n"
+        "QToolButton:disabled{\n"
+        "    border-radius:10 px;\n"
+        "}\n"
+        "QToolButton:enabled{\n"
+        "    background-color: rgb(92, 92, 96);\n"
+        "    border-radius:10 px;\n"
+        "}\n"
+        "QComboBox:disabled{\n"
+        "    background-color: rgb(29, 29, 31);\n"
+        "    border-radius:10 px;\n"
+        "    border-color: rgb(66, 66, 69);\n"
+        "}\n"
+        "QComboBox:ensabled{\n"
+        "    background-color: rgb(92, 92, 96);\n"
+        "    border-radius:10 px;\n"
+        "    border-color: rgb(29, 29, 31);\n"
+        "}\n"
+        "QTextEdit:disabled{\n"
+        "    background-color: rgb(92, 92, 96);\n"
+        "    border-radius:10 px;\n"
+        "}\n"
+        "QSpinBox:enabled{\n"
+        "    border:1px solid;\n"
+        "    border-color: rgb(66, 66, 69);\n"
+        "}\n"
+        "QSpinBox:disabled{\n"
+        "    border:1px solid;\n"
+        "    border-color: rgb(29, 29, 31);\n"
+        "}\n"
+        "QSpinBox::up-button:enabled {\n"
+        "    background-color: rgb(104, 104, 104);\n"
+        "}\n"
+        "QSpinBox::down-button:enabled {\n"
+        "    background-color: rgb(66, 66, 69)\n"
+        "}\n"
+        "QSpinBox::up-button:disabled {\n"
+        "    background-color: rgb(29, 29, 31);\n"
+        "}\n"
+        "QSpinBox::down-button:disabled {\n"
+        "    background-color: rgb(29, 29, 31);\n"
+        "}";
+
+const char Logwindow_DarkModeStyle[]=
+        "*{background-color: rgb(29, 29, 31);}*:enabled{color: rgb(251, 251, 253);}*:disabled{ color: rgb(66, 66, 69);}QPushButton:enabled{background-color: rgb(92, 92, 96);border-radius:10 px;}QToolButton:disabled{border-radius:10 px;}QToolButton:enabled{background-color: rgb(92, 92, 96);border-radius:10 px;}QTextEdit:enabled{background-color: rgb(92, 92, 96);border-radius:10 px;}";
+const char ChoseMachine_DarkModeStyle[]=
+        "*{background-color: rgb(29, 29, 31);}*:enabled{color: rgb(251, 251, 253);}*:disabled{ color: rgb(66, 66, 69);}QLineEdit{border:1px solid;border-color: rgb(66, 66, 69);}QListWidget{background-color: rgb(66, 66, 69);}QPushButton:enabled{background-color: rgb(92, 92, 96);border-radius:10 px;}";
 #endif // MYFUNCS_H

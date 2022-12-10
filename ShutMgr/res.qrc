@@ -6,5 +6,8 @@
         <file>resources/refresh.png</file>
         <file>resources/Reason_code_list.png</file>
         <file>resources/darkbackground.png</file>
+        <file>resources/dark.ico</file>
+        <file>resources/light.ico</file>
+        <file>resources/darkAuto.ico</file>
     </qresource>
 </RCC>

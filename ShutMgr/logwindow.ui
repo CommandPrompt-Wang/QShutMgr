@@ -31,6 +31,9 @@
   <property name="windowTitle">
    <string>日志</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QTextEdit" name="LogText">
    <property name="geometry">
     <rect>
