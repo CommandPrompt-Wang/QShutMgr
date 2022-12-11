@@ -561,7 +561,7 @@ void MainWindow::on_LockComputer_clicked()
     Disable_and_Uncheck(ui->SetMachine)
     ui->ChooseMachine_but->setEnabled(false);
 
-    ui->check_GiveReason->setEnabled(false);
+    Disable_and_Uncheck(ui->check_GiveReason)
 
     ui->ToBIOS->setText("启动时转到固件");
 }
@@ -587,7 +587,7 @@ void MainWindow::on_AbortShutdown_clicked()
     Disable_and_Uncheck(ui->SetMachine)
     ui->ChooseMachine_but->setEnabled(false);
 
-    ui->check_GiveReason->setEnabled(false);
+    Disable_and_Uncheck(ui->check_GiveReason)
 
     ui->ToBIOS->setText("启动时不转到固件");
 
