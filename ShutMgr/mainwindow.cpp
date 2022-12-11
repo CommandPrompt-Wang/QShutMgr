@@ -443,8 +443,6 @@ void MainWindow::on_Shutdown_p_clicked()
 
     Disable_and_Uncheck(ui->WaitingTimeCheckBox);
 
-    ui->Comment_Text->setEnabled(false);
-
     Disable_and_Uncheck(ui->Comment);
 
     Disable_and_Uncheck(ui->RestartRegistedProgram);
@@ -469,9 +467,8 @@ void MainWindow::on_Hibernate_clicked()
     ui->Force_Shutdown->setEnabled(true);
 
     ui->WaitingTimeCheckBox->setEnabled(true);  //已添加延时
-    ui->Comment_Text->setEnabled(true);//已添加
 
-    Disable_and_Uncheck(ui->Comment);
+    ui->Comment->setEnabled(true);//已添加
 
     Disable_and_Uncheck(ui->RestartRegistedProgram);
 
@@ -498,9 +495,7 @@ void MainWindow::on_Sleep_clicked()
 
     ui->WaitingTimeCheckBox->setEnabled(true);  //已添加延时
 
-    ui->Comment_Text->setEnabled(true);//已添加
-
-    Disable_and_Uncheck(ui->Comment)
+    ui->Comment->setEnabled(true);//已添加
 
     Disable_and_Uncheck(ui->RestartRegistedProgram)
 
@@ -527,9 +522,7 @@ void MainWindow::on_Logout_clicked()
 
     ui->WaitingTimeCheckBox->setEnabled(true);  //已添加延时
 
-    ui->Comment_Text->setEnabled(true);//已添加
-
-    Disable_and_Uncheck(ui->Comment);
+    ui->Comment->setEnabled(true);//已添加
 
     Disable_and_Uncheck(ui->RestartRegistedProgram);
 
@@ -555,9 +548,7 @@ void MainWindow::on_LockComputer_clicked()
 
     ui->WaitingTimeCheckBox->setEnabled(true);//已添加
 
-    ui->Comment_Text->setEnabled(true);//已添加
-
-    Disable_and_Uncheck(ui->Comment);
+    ui->Comment->setEnabled(true);//已添加
 
     Disable_and_Uncheck(ui->RestartRegistedProgram);
 
@@ -582,8 +573,6 @@ void MainWindow::on_AbortShutdown_clicked()
     Disable_and_Uncheck(ui->Force_Shutdown);
 
     Disable_and_Uncheck(ui->WaitingTimeCheckBox);
-
-    ui->Comment_Text->setEnabled(false);
 
     Disable_and_Uncheck(ui->Comment);
 
@@ -615,7 +604,7 @@ void MainWindow::on_Comment_stateChanged(int arg1)
     }
     else
     {
-        ui->Comment_Text->setDisabled(true);
+        ui->Comment_Text->setEnabled(false);
         MoreOption[COMMENT]=false;
     }
 }

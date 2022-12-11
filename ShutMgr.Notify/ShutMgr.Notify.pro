@@ -24,7 +24,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-VERSION = 2.0.0.143
+VERSION = 2.0.1.200
 
 #RC_ICONS = app.ico
 

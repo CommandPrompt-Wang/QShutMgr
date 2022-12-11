@@ -42,7 +42,7 @@ DISTFILES +=
 
 #OTHER_FILES += version.rc
 
-VERSION = 2.0.0.143
+VERSION = 2.0.1.200
 
 RC_ICONS = Programico.ico
 

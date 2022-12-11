@@ -100,6 +100,6 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)
 ### v2.0.0.200(preview)   
 - 新功能   
     - ShutMgr.exe  
-        1. 加入了夜间模式
+        1. 加入了夜间模式  
 - 问题修复    
     - 无  
