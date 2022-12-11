@@ -97,7 +97,7 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)
     - ShutMgr.Ext.exe  
         - 无  
         
-### v2.0.0.200(preview)   
+### v2.0.1.200(preview)   
 - 新功能   
     - ShutMgr.exe  
         1. 加入了夜间模式
