@@ -4,20 +4,16 @@
 Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)  
    
 ## 注意  
-1. <img width="554" alt="image" src="https://user-images.githubusercontent.com/62493399/190623419-abfb2dd9-b066-41e7-8c97-fe6e823d94b4.png">  
-2. ↑ 为了通过编译，我按照右边的方法修改了头文件 https://codereview.qt-project.org/c/qt/qtbase/+/236948/2/src/corelib/tools/qalgorithms.h  
-3. 根据开源协议“您需要将您使用的Qt库的完整源代码，包括您完成或应用的所有修改，交付给您的用户/客户。或者，您需要提供书面报价，其中包含有关如何获取源代码的说明。另请注意，这必须在您的控制之下(_~~我怎么管啊（悲~~_)，因此仅提供Qt项目或Qt公司提供的源代码链接是不够的。(_~~兄啊...我只有能力提供链接啊，总不可能‘提供书面报价’罢（悲~~_)”
-    1. 要获取Qt, 请先下载安装器:https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-unified-windows-x64-4.4.1-online.exe   
-    2. (使用清华源) installer(.exe) --mirror https://mirrors.tuna.tsinghua.edu.cn/qt   
-  
+本程序使用开源Qt框架，请遵守GPL协议  
    
 ## 用法
-<img width="312" alt="image" src="https://user-images.githubusercontent.com/62493399/190382391-1c56fe84-24f8-4786-93a9-0208166f4fcb.png">
-  
+![image](https://github.com/CommandPrompt-Wang/QShutMgr/assets/62493399/c6399a0e-0e17-4786-b5eb-254fc6623d0d)
+
 1. 在上面一栏中选择基本功能<br>
-2. 然后在下一栏中选择高级选项<br>    
-    - 程序会自动取消冲突的选项(取消勾选和/或置灰)<br>
-3. 鼠标悬停在功能上可以查看说明<br>
+1. 在中间可以输入cmd表达式（输出1即为真，倒计时和条件同时满足方能执行关机任务）（举例：文件下载完成 `if not exist file.crdownload echo 1`）
+1. 然后在下一栏中选择高级选项<br>    
+    - 程序会自动取消冲突的选项(取消勾选)<br>
+    - 程序会忽略无效的选项（比如在本机功能中指定计算机）
   
 ## 更新日志
 ### v1.0.0(GitHub 无)
@@ -103,3 +99,20 @@ Powered by open-source Qt\_由开源版 Qt 开发(遵守 GPL v3)
         1. 加入了夜间模式  
 - 问题修复    
     - 无  
+
+### v3.0.0
+**重大更新**
+- 变化
+  1. 转移到Qt6
+  2. 转移到Windows API，重写核心类
+  3. 合并所有模块
+  4. 现在可以在右边白框中查看、停止关机任务
+  5. 加入了预设槽
+  6. （预览）加入了条件表达式（条件表达式仅有**2秒**的执行时间，超时自动忽略）
+  7. 现在程序可以与开始菜单联动（？）
+  8. 优化深色模式行为
+  9. 优化日志
+  10. 优化快捷键
+- 已知Bug
+  1. 条件表达式似乎不起作用
+  2. 与开始菜单联动似乎不起作用
