@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>464</height>
+    <width>674</width>
+    <height>587</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,101 +16,82 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>566</width>
-    <height>464</height>
+    <width>674</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>ShutMgrWnd</string>
+   <string>关机管理器</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/new/icons/icon.ico</normaloff>:/new/icons/icon.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="Group_Extended">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>500</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>参数</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
-       <spacer name="horizontalSpacer">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QToolButton" name="BLightMode">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/new/icons/light.ico</normaloff>:/new/icons/light.ico</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="BDarkMode">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/new/icons/dark.ico</normaloff>:/new/icons/dark.ico</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="BAutoDark">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/new/icons/darkAuto.ico</normaloff>:/new/icons/darkAuto.ico</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>300</width>
+          <width>40</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
       </item>
-      <item row="0" column="3">
-       <widget class="QPushButton" name="BExit">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>退出(&amp;Q)</string>
-        </property>
-        <property name="shortcut">
-         <string>Esc</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="BExecute">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>执行(&amp;E)</string>
-        </property>
-        <property name="shortcut">
-         <string>Return</string>
-        </property>
-        <property name="default">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
+     </layout>
+    </item>
+    <item row="6" column="0">
+     <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QPushButton" name="BViewLog">
         <property name="sizePolicy">
@@ -130,9 +111,100 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="BExit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>退出[Esc]</string>
+        </property>
+        <property name="shortcut">
+         <string>Esc</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="BExecute">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>执行[Enter]</string>
+        </property>
+        <property name="shortcut">
+         <string>Return</string>
+        </property>
+        <property name="default">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>300</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QToolButton" name="But_SavePreset">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>存储到预设(&amp;E)...</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextOnly</enum>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
-    <item row="0" column="0">
+    <item row="2" column="0">
      <widget class="QGroupBox" name="Group_Basic">
       <property name="minimumSize">
        <size>
@@ -143,7 +215,7 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>150</height>
+        <height>100</height>
        </size>
       </property>
       <property name="title">
@@ -154,187 +226,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="1">
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="RBShutdown">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>关机[1]</string>
-           </property>
-           <property name="shortcut">
-            <string>1</string>
-           </property>
-           <property name="autoRepeat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QRadioButton" name="RBRestart">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>重启[2]</string>
-           </property>
-           <property name="shortcut">
-            <string>2</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QRadioButton" name="RBSleep">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>睡眠[3]</string>
-           </property>
-           <property name="shortcut">
-            <string>3</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QRadioButton" name="RBHibernate">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>休眠[4]</string>
-           </property>
-           <property name="shortcut">
-            <string>4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="RBLockWorkstation">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>锁定[5]</string>
-           </property>
-           <property name="shortcut">
-            <string>5</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QRadioButton" name="RBLogout">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>注销[6]</string>
-           </property>
-           <property name="shortcut">
-            <string>6</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QRadioButton" name="RBShutdown_p">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>立即关机[7]</string>
-           </property>
-           <property name="shortcut">
-            <string>7</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QRadioButton" name="RBCancel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>取消[8]</string>
-           </property>
-           <property name="shortcut">
-            <string>8</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <layout class="QGridLayout" name="Grid_Basic"/>
        </item>
        <item row="0" column="0">
         <spacer name="horizontalSpacer_2">
@@ -355,22 +247,389 @@
       </layout>
      </widget>
     </item>
+    <item row="5" column="0">
+     <widget class="QGroupBox" name="Group_Extended">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>500</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>参数</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="3">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>30</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="2">
+        <layout class="QGridLayout" name="Grid_Para">
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="Check_force">
+           <property name="text">
+            <string>强制(&amp;F)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="Check_autoLogin">
+           <property name="text">
+            <string>自动登录(&amp;G)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="Check_toFirmware">
+           <property name="text">
+            <string>转到BIOS/UEFI(&amp;W)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="2">
+          <widget class="QTextEdit" name="Edit_Comment">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="tabletTracking">
+            <bool>true</bool>
+           </property>
+           <property name="tabChangesFocus">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QToolButton" name="But_machine">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>计算机列表(&amp;M)...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="Check_comment">
+           <property name="text">
+            <string>注释(&amp;C)</string>
+           </property>
+           <property name="tristate">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QCheckBox" name="Check_fastboot">
+           <property name="text">
+            <string>快速启动(&amp;Y)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QCheckBox" name="Check_reason">
+             <property name="text">
+              <string>关机原因(主/次)(&amp;D)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="Combo_reasonType">
+             <item>
+              <property name="text">
+               <string>计划内</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>计划外</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>自定义</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="Spin_majorReason">
+             <property name="maximum">
+              <number>255</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="Spin_minorReason">
+             <property name="maximum">
+              <number>65535</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="2">
+          <widget class="QCheckBox" name="Check_toAdvanceOpt">
+           <property name="text">
+            <string>转到高级启动选项(&amp;O)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QCheckBox" name="Check_timeout">
+             <property name="text">
+              <string>延时(&amp;T)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="Spin_timeout">
+             <property name="maximum">
+              <number>315360000</number>
+             </property>
+             <property name="value">
+              <number>60</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="2">
+          <widget class="QListWidget" name="List_tasks">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>150</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>30</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QGroupBox" name="Group_Condition">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>条件</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="Line_Condition">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="tabletTracking">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>条件cmd表达式，无需请留空</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="Group_Preset">
+      <property name="title">
+       <string>预设</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="But_Preset3">
+         <property name="text">
+          <string>预设（空）[Alt+3]</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="But_Preset1">
+         <property name="text">
+          <string>预设（空）[Alt+1]</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="But_Preset4">
+         <property name="text">
+          <string>预设（空）[Alt+4]</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="But_Preset2">
+         <property name="text">
+          <string>预设（空）[Alt+2]</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+2</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>RBShutdown</tabstop>
-  <tabstop>RBRestart</tabstop>
-  <tabstop>RBSleep</tabstop>
-  <tabstop>RBHibernate</tabstop>
-  <tabstop>RBLockWorkstation</tabstop>
-  <tabstop>RBLogout</tabstop>
-  <tabstop>RBShutdown_p</tabstop>
-  <tabstop>RBCancel</tabstop>
+  <tabstop>But_Preset1</tabstop>
+  <tabstop>But_Preset2</tabstop>
+  <tabstop>But_Preset3</tabstop>
+  <tabstop>But_Preset4</tabstop>
+  <tabstop>Line_Condition</tabstop>
+  <tabstop>Check_timeout</tabstop>
+  <tabstop>Spin_timeout</tabstop>
+  <tabstop>Check_force</tabstop>
+  <tabstop>Check_toAdvanceOpt</tabstop>
+  <tabstop>Check_toFirmware</tabstop>
+  <tabstop>But_machine</tabstop>
+  <tabstop>Check_fastboot</tabstop>
+  <tabstop>Check_autoLogin</tabstop>
+  <tabstop>Check_reason</tabstop>
+  <tabstop>Combo_reasonType</tabstop>
+  <tabstop>Spin_majorReason</tabstop>
+  <tabstop>Spin_minorReason</tabstop>
+  <tabstop>Check_comment</tabstop>
+  <tabstop>Edit_Comment</tabstop>
+  <tabstop>List_tasks</tabstop>
+  <tabstop>BViewLog</tabstop>
   <tabstop>BExecute</tabstop>
   <tabstop>BExit</tabstop>
+  <tabstop>BLightMode</tabstop>
+  <tabstop>BDarkMode</tabstop>
+  <tabstop>BAutoDark</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
